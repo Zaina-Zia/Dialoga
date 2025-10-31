@@ -42,7 +42,16 @@ export default function LoginPage() {
 
     if (hasError) return;
 
-    // Mock success login flow: navigate to Verify Email
+    // Persist credentials and desired redirect then navigate to verify-email
+    try {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("auth_email", email);
+        localStorage.setItem("auth_password", password);
+        const redirect = email === "admin@example.com" && password.trim() ? "/admin-panel-page" : "/dashboard";
+        localStorage.setItem("post_login_redirect", redirect);
+      }
+    } catch {}
+
     router.push("/verify-email");
   };
   return (

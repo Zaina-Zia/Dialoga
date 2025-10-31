@@ -43,7 +43,7 @@ export default function ResetPasswordPage() {
   return (
     <main className="min-h-dvh w-full grid place-items-center">
       {/* Mobile artboard 390x844 paddings and 32px gap */}
-      <section className="lg:hidden w-full max-w-[390px] min-h-dvh flex flex-col items-center bg-[#F5F3F1] border border-[#03121F]/20 pt-8 px-4 pb-[107px] gap-8">
+      <section className="lg:hidden w-full max-w-[390px] min-h-dvh flex flex-col items-center bg-[#F5F3F1] pt-8 px-4 pb-[107px] gap-8">
         {/* Header 390x36 with 8/16 paddings and back chevron */}
         <header className="w-[390px] h-[36px] px-4 py-2 flex items-center">
           <Link href="/login" aria-label="Back" className="w-[20px] h-[20px] inline-flex items-center justify-center">

@@ -1,14 +1,19 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { DashboardHeader } from "../../components/dashboard/DashboardHeader";
 import { TaskStatCard } from "../../components/dashboard/TaskStatCard";
 import { MessageItem } from "../../components/dashboard/MessageItem";
 import { CategoryCard } from "../../components/dashboard/CategoryCard";
 import { YourTasksSection } from "../../components/dashboard/YourTasksSection";
+import Footer from "../../components/layout/Footer";
 
 export default function DashboardHomePage() {
+  const router = useRouter();
+  const [showNotifications, setShowNotifications] = React.useState(false);
   const logout = () => {
-    window.location.href = "/login";
+    router.push("/login");
   };
   const tasks = [
     { label: "Mensajes", count: 7, iconSrc: "/images/Dashboard_Home/mensajes.png", iconAlt: "Mensajes" },
@@ -42,7 +47,6 @@ export default function DashboardHomePage() {
         <div className="w-[390px] flex flex-col gap-4">
           {/* Header + divider */}
           <DashboardHeader />
-          <div className="w-full border-t border-black" />
 
           {/* Content area px-3 gap-4 */}
           <div className="w-[390px] px-3 flex flex-col items-center gap-4">
@@ -70,74 +74,93 @@ export default function DashboardHomePage() {
               </div>
             </div>
 
-            {/* Customer Categories */}
+            {/* Customer Categories card (outer shell) */}
             <div className="w-[358px] h-[218px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px]">
               <div className="w-full h-full p-3 flex flex-col gap-[10px]">
                 <div className="w-[334px] h-[32px] flex items-center justify-between">
                   <div className="w-[230px] h-[32px] text-[21px] leading-[32px] font-semibold text-black">Customer Categories</div>
-                  <div className="w-5 h-5 inline-flex items-center justify-center" aria-hidden>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M10 6L16 12L10 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
                 </div>
                 <div className="w-[334px] flex flex-wrap justify-between gap-y-[6px]">
-                  {categories.map((c, i) => (
-                    <CategoryCard
-                      key={i}
-                      iconSrc={c.iconSrc}
-                      label={c.label}
-                      innerW={c.innerW}
-                      innerH={c.innerH}
-                      textW={c.textW}
-                      textH={c.textH}
-                      gap={c.gap}
-                      labelFontSize={c.labelFontSize}
-                      labelLineHeight={c.labelLineHeight}
-                    />
-                  ))}
+                  {categories.map((c, i) => {
+                    const card = (
+                      <CategoryCard
+                        key={i}
+                        iconSrc={c.iconSrc}
+                        label={c.label}
+                        innerW={c.innerW}
+                        innerH={c.innerH}
+                        textW={c.textW}
+                        textH={c.textH}
+                        gap={c.gap}
+                        labelFontSize={c.labelFontSize}
+                        labelLineHeight={c.labelLineHeight}
+                      />
+                    );
+                    if (c.label === "Closed") {
+                      return (
+                        <Link key={i} href="/old-closed-customers" aria-label="See Closed Customers" className="active:scale-[0.99] transition">
+                          {card}
+                        </Link>
+                      );
+                    }
+                    return card;
+                  })}
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Notifications overlay */}
+          <NotificationOverlay open={showNotifications} onClose={() => setShowNotifications(false)} />
+
           {/* Footer */}
-          <footer className="w-[390px] h-[62.09px] mx-auto flex flex-col items-center gap-4">
-            {/* Line 1 */}
-            <div className="w-[390px] border-t border-black" />
-            {/* Frame 7 */}
-            <div className="w-[390px] h-[45px] px-[42px]">
-              {/* Footer Icons */}
-              <div className="mx-auto w-[254px] h-[45px] flex items-start justify-center gap-[32px]">
-                {/* Hidden slot (kept for structure, not rendered) */}
-                {/* <div className="w-[74px] h-[45px] hidden md:flex flex-col items-center gap-[2px]" /> */}
-
-                {/* Notification */}
-                <div className="w-[111px] h-[45px] flex flex-col items-center gap-[2px]">
-                  <div className="w-[28px] h-[28px] relative">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute" style={{ left: "4px", top: "4px" }}>
-                      <path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2Zm6-6V11a6 6 0 1 0-12 0v5l-2 2v1h16v-1l-2-2Z" stroke="#464646" strokeWidth="1.5" fill="none" />
-                    </svg>
-                  </div>
-                  <div className="w-[58px] h-[15px] text-center text-[10px] leading-[15px] font-medium text-black">Notification</div>
-                </div>
-
-                {/* Logout */}
-                <div className="w-[111px] h-[45px] flex flex-col items-center gap-[2px]">
-                  <div className="w-[28px] h-[28px] relative cursor-pointer" onClick={logout}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute" style={{ left: "4px", top: "4px" }}>
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M16 17l5-5-5-5" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M21 12H9" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                  <div className="w-[47px] h-[12px] text-center text-[10px] leading-[15px] font-medium text-black">Logout</div>
-                </div>
-              </div>
-            </div>
-          </footer>
+          <Footer onNotify={() => setShowNotifications(true)} onLogout={logout} />
         </div>
       </section>
     </main>
+  );
+}
+
+function NotificationOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+  const items = [
+    { title: "Title of notification", time: "15:45, Sep 05, 2025" },
+    { title: "Title of notification", time: "15:45, Sep 05, 2025" },
+    { title: "Title of notification", time: "15:45, Sep 05, 2025" },
+    { title: "Title of notification", time: "15:45, Sep 05, 2025" },
+  ];
+  return (
+    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-[1px] flex items-center justify-center px-4">
+      <div className="relative w-full max-w-[334px] rounded-[8px] bg-[#FDFCFB] border border-[#E4E1DD] p-4 shadow-md">
+        <button aria-label="Close" onClick={onClose} className="absolute right-3 top-3 h-6 w-6 grid place-items-center text-black/70">✕</button>
+        <h2 className="text-[21px] leading-[25px] font-semibold text-black mb-2">Notifications</h2>
+        <div className="flex flex-col divide-y divide-[#E4E1DD]">
+          {items.map((it, i) => (
+            <button key={i} type="button" className="w-full py-3 flex items-center justify-between text-left">
+              <div className="flex items-center gap-3">
+                <div className="h-[28px] w-[28px] grid place-items-center">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 13h10M7 9h10M7 17h6" stroke="#09B558" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[15px] leading-[22px] font-medium text-black">{it.title}</span>
+                  <div className="flex items-center gap-1 text-[10px] leading-[15px] text-black/50">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="9" stroke="#464646" strokeWidth="1.5" />
+                      <path d="M12 7v6l4 2" stroke="#464646" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span>{it.time}</span>
+                  </div>
+                </div>
+              </div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6l6 6-6 6" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
