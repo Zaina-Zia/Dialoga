@@ -27,8 +27,8 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
           <img src="/images/Logo_bg_removed.png" alt="Dialoga" width={232} height={65} className="w-[232px] h-[65px] object-contain" />
           <div className="w-[20px] h-[20px]" />
         </div>
-        {/* Line 1 */}
-        <div className="w-[390px] mt-2 border-t border-black" />
+        {/* Line 1 (edge-to-edge) */}
+        <div className="w-full mt-2 border-t border-black" />
       </div>
     </header>
   );

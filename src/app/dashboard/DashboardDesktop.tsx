@@ -14,16 +14,8 @@ const Header: React.FC = () => {
     <header className="hidden lg:flex w-full flex-col">
       {/* Top bar per Figma: back chevron, centered logo, right actions */}
       <div className="w-full flex items-center justify-between p-4 lg:p-4">
-        <button
-          type="button"
-          aria-label="Back"
-          onClick={() => router.back()}
-          className="h-5 w-5 inline-flex items-center justify-center"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 6L8 12L14 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+        {/* No back button on dashboard desktop */}
+        <div className="h-5 w-5" />
         {/* Logo placeholder (232x65) */}
         <div className="h-[65px] w-[232px] grid place-items-center">
           <img src="/images/Logo_bg_removed.png" alt="Dialoga" className="h-[65px] w-[232px] object-contain" />

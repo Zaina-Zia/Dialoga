@@ -54,8 +54,8 @@ export default function DashboardHomePage() {
       <section className="w-full max-w-[390px] min-h-dvh flex flex-col items-center bg-[#F5F3F1] pt-8 pb-8 gap-[50px]">
         {/* Frame 35 */}
         <div className="w-[390px] flex flex-col gap-4">
-          {/* Header + divider */}
-          <DashboardHeader />
+          {/* Header + divider (no back on dashboard) */}
+          <DashboardHeader hideBack />
 
           {/* Content area px-3 gap-4 */}
           <div className="w-[390px] px-3 flex flex-col items-center gap-4">

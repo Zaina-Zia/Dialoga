@@ -13,6 +13,7 @@ export type CategoryItem = {
   id: string;
   title: string;
   icon?: React.ComponentType<{ className?: string }>;
+  imageSrc?: string;
   color?: string;
   isOpen?: boolean;
 };
@@ -44,6 +45,7 @@ const CustomerCategories: React.FC<CustomerCategoriesProps> = ({ categories, onT
                 key={c.id}
                 title={c.title}
                 icon={c.icon}
+                imageSrc={c.imageSrc}
                 color={c.color}
                 isOpen={c.isOpen}
                 onToggle={(next) => onToggleCategory?.(c.id, next)}
@@ -78,12 +80,48 @@ const CustomerCategories: React.FC<CustomerCategoriesProps> = ({ categories, onT
 
 // Default demo data (mobile-first). Replace with API data.
 export const demoCategories: CategoryItem[] = [
-  { id: 'interesado', title: 'Interesado', icon: Heart, color: 'text-emerald-600', isOpen: false },
-  { id: 'delivery', title: 'Delivery', icon: Truck, color: 'text-emerald-600', isOpen: false },
-  { id: 'va-en-persona', title: 'Va En Persona', icon: MapPin, color: 'text-emerald-600', isOpen: false },
-  { id: 'solo-pide-info', title: 'Solo Pide Info', icon: Info, color: 'text-emerald-600', isOpen: false },
-  { id: 'no-interesado', title: 'No Interesado', icon: Frown, color: 'text-emerald-600', isOpen: false },
-  { id: 'closed', title: 'Closed', icon: History, color: 'text-emerald-600', isOpen: false },
+  {
+    id: 'interesado',
+    title: 'Interesado',
+    imageSrc: '/images/Dashboard_Home/CustomerCategories/interesado.png',
+    color: 'text-emerald-600',
+    isOpen: false,
+  },
+  {
+    id: 'delivery',
+    title: 'Delivery',
+    imageSrc: '/images/Dashboard_Home/envio.png',
+    color: 'text-emerald-600',
+    isOpen: false,
+  },
+  {
+    id: 'va-en-persona',
+    title: 'Va En Persona',
+    imageSrc: '/images/Dashboard_Home/visitas.png',
+    color: 'text-emerald-600',
+    isOpen: false,
+  },
+  {
+    id: 'solo-pide-info',
+    title: 'Solo Pide Info',
+    imageSrc: '/images/Dashboard_Home/CustomerCategories/soloPriceinfo.png',
+    color: 'text-emerald-600',
+    isOpen: false,
+  },
+  {
+    id: 'no-interesado',
+    title: 'No Interesado',
+    imageSrc: '/images/Dashboard_Home/CustomerCategories/noIntersado.png',
+    color: 'text-emerald-600',
+    isOpen: false,
+  },
+  {
+    id: 'closed',
+    title: 'Closed',
+    imageSrc: '/images/Dashboard_Home/CustomerCategories/closed.png',
+    color: 'text-emerald-600',
+    isOpen: false,
+  },
 ];
 
 export default CustomerCategories;

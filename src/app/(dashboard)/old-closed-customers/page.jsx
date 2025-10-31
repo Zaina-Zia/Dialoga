@@ -4,16 +4,7 @@ import { useRouter } from "next/navigation";
 import { DashboardHeader } from "../../../components/dashboard/DashboardHeader";
 import Footer from "../../../components/layout/Footer";
 import { LogoutOverlay } from "../../../components/overlays/LogoutOverlay";
-import {
-  Heart,
-  Truck,
-  MapPin,
-  Info,
-  Frown,
-  History,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 // Old/Closed Customers page (390x844 artboard). Uses shared Header and Footer.
 // Icons: lucide-react. Accordion: smooth toggle with chevron down (closed) -> up (open).
@@ -34,21 +25,21 @@ export default function OldClosedCustomersPage() {
   const toggle = (key) => setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const categories = [
-    { key: "interesado", title: "Interesado", Icon: Heart },
-    { key: "delivery", title: "Delivery", Icon: Truck },
-    { key: "vaEnPersona", title: "Va En Persona", Icon: MapPin },
-    { key: "soloPideInfo", title: "Solo Pide Info", Icon: Info },
-    { key: "noInteresado", title: "No Interesado", Icon: Frown },
-    { key: "closed", title: "Closed", Icon: History },
+    { key: "interesado", title: "Interesado", imageSrc: "/images/Dashboard_Home/CustomerCategories/interesado.png" },
+    { key: "delivery", title: "Delivery", imageSrc: "/images/Dashboard_Home/envio.png" },
+    { key: "vaEnPersona", title: "Va En Persona", imageSrc: "/images/Dashboard_Home/visitas.png" },
+    { key: "soloPideInfo", title: "Solo Pide Info", imageSrc: "/images/Dashboard_Home/CustomerCategories/soloPriceinfo.png" },
+    { key: "noInteresado", title: "No Interesado", imageSrc: "/images/Dashboard_Home/CustomerCategories/noIntersado.png" },
+    { key: "closed", title: "Closed", imageSrc: "/images/Dashboard_Home/CustomerCategories/closed.png" },
   ];
 
   return (
     <main className="min-h-dvh w-full grid place-items-center bg-[#F5F3F1]">
       {/* Frame 23: 390 width, 844 height, padding-y:32, gap:48 */}
       <section className="w-full max-w-[390px] min-h-[844px] flex flex-col items-center gap-12 py-8">
-        {/* Header (shared) */}
+        {/* Header (shared, no back like dashboard) */}
         <div className="w-[390px] flex flex-col">
-          <DashboardHeader />
+          <DashboardHeader hideBack />
         </div>
 
         {/* Content block (centered) */}
@@ -62,7 +53,7 @@ export default function OldClosedCustomersPage() {
 
             {/* List area: px-12, gap-4 */}
             <div className="px-[12px] pt-2 pb-3 space-y-4">
-              {categories.map(({ key, title, Icon }) => {
+              {categories.map(({ key, title, imageSrc }) => {
                 const isOpen = open[key];
                 return (
                   <div key={key} className="w-full">
@@ -73,7 +64,9 @@ export default function OldClosedCustomersPage() {
                       aria-expanded={isOpen}
                     >
                       <div className="flex items-center gap-1.5">
-                        <Icon className="h-5 w-5 text-emerald-600" />
+                        <span className="h-6 w-6 grid place-items-center rounded text-emerald-600">
+                          <img src={imageSrc} alt="" className="h-5 w-5 object-contain" />
+                        </span>
                         <span className="text-[18px] leading-[27px] font-medium text-black">{title}</span>
                       </div>
                       {isOpen ? (
