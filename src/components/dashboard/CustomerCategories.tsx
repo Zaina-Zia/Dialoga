@@ -48,10 +48,25 @@ const CustomerCategories: React.FC<CustomerCategoriesProps> = ({ categories, onT
                 isOpen={c.isOpen}
                 onToggle={(next) => onToggleCategory?.(c.id, next)}
               >
-                <ul className="list-disc pl-5">
-                  <li>Ejemplo de detalle 1</li>
-                  <li>Ejemplo de detalle 2</li>
-                </ul>
+                <div className="flex flex-col gap-2 w-full">
+                  {[0,1,2].map((i) => (
+                    <div key={i} className="w-full h-[59px] bg-[#FDFCFB] border border-[rgba(70,70,70,0.25)] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] p-1">
+                      <div className="w-full h-[51px] px-1 py-1 flex flex-col gap-0.5">
+                        <div className="w-full h-[23px] flex items-start gap-6">
+                          <div className="flex-1 h-[23px] text-[15px] leading-[22px] font-medium text-black flex items-center">
+                            Name of the product
+                          </div>
+                          <div className="w-[56px] h-[23px] text-[15px] leading-[22px] font-medium text-black text-right flex items-center justify-end">
+                            Qty: 1
+                          </div>
+                        </div>
+                        <div className="h-[18px] text-[12px] leading-[18px] font-normal text-black flex items-center">
+                          Last contact: 15:45, Sep 05, 2025
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </CategoryAccordion>
             ))}
           </div>

@@ -55,9 +55,9 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({
           <ChevronRight className="h-4 w-4 text-black/85" />
         )}
       </button>
-      <div className={`overflow-hidden transition-all ${isOpen ? 'max-h-40 pt-2' : 'max-h-0'}`}>
-        <div className="text-sm text-neutral-700">
-          {children || 'Detalles de la categoría (contenido de ejemplo).'}
+      <div className={`overflow-hidden transition-all ${isOpen ? 'max-h-[1000px] pt-2' : 'max-h-0'}`}>
+        <div>
+          {children}
         </div>
       </div>
     </div>

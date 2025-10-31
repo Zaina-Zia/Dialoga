@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { DashboardHeader } from "../../../components/dashboard/DashboardHeader";
 import Footer from "../../../components/layout/Footer";
+import { LogoutOverlay } from "../../../components/overlays/LogoutOverlay";
 import {
   Heart,
   Truck,
@@ -27,6 +28,8 @@ export default function OldClosedCustomersPage() {
     closed: false,
   };
   const [open, setOpen] = useState(initial);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   const toggle = (key) => setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
 
@@ -95,9 +98,12 @@ export default function OldClosedCustomersPage() {
         {/* Notifications overlay */}
         <NotificationOverlay open={showNotifications} onClose={() => setShowNotifications(false)} />
 
+        {/* Logout overlay */}
+        <LogoutOverlay open={showLogout} onClose={() => setShowLogout(false)} onConfirm={() => router.push('/login')} />
+
         {/* Footer (shared) */}
         <div className="w-[390px] mt-auto">
-          <Footer onNotify={() => setShowNotifications(true)} onLogout={() => router.push('/login')} />
+          <Footer onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
         </div>
       </section>
     </main>
