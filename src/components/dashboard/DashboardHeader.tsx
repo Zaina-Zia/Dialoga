@@ -4,12 +4,12 @@ import { useRouter } from "next/navigation";
 export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
   const router = useRouter();
   return (
-    <header className="w-full grid place-items-end">
-      {/* Outer container 390 width, ~88.19 height */}
-      <div className="w-full max-w-[390px] h-[88.19px] flex flex-col">
-        {/* Inner frame (Frame 11) */}
-        <div className="w-[390px] h-[81px] px-4 py-2 flex items-center justify-between gap-[46px]">
-          {/* Back button (Disclosure) 20x20, optionally hidden per Figma */}
+    <header className="w-full flex flex-col items-center">
+      {/* Outer container */}
+      <div className="w-full max-w-[390px] h-auto flex flex-col">
+        {/* Inner frame with less top padding */}
+        <div className="w-full h-[81px] px-4 pt-1 pb-2 flex items-center justify-between gap-[46px]">
+          {/* Back button */}
           {hideBack ? (
             <div className="w-[20px] h-[20px]" />
           ) : (
@@ -19,19 +19,36 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
               onClick={() => router.back()}
               className="w-[20px] h-[20px] inline-flex items-center justify-center"
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 6L8 12L14 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14 6L8 12L14 18"
+                  stroke="#464646"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           )}
-          <img src="/images/Logo_bg_removed.png" alt="Dialoga" width={232} height={65} className="w-[232px] h-[65px] object-contain" />
+          <img
+            src="/images/Logo_bg_removed.png"
+            alt="Dialoga"
+            width={232}
+            height={65}
+            className="w-[232px] h-[65px] object-contain"
+          />
           <div className="w-[20px] h-[20px]" />
         </div>
       </div>
-      {/* Full-bleed divider */}
-      <div className="w-screen border-t border-black mt-2" />
+
+      {/* Full-width divider */}
+      <div className="w-screen border-t border-black" />
     </header>
   );
 }
-
-

@@ -1,191 +1,97 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { ChevronLeft, PlusCircle, Camera, Mic } from "lucide-react";
+import DesktopHeader from "../../../components/dashboard/DesktopHeader";
+import { NotificationOverlay } from "../../../components/notifications/NotificationOverlay";
+import { LogoutOverlay } from "../../../components/overlays/LogoutOverlay";
 
-export default function ChatViewPage() {
-  const router = useRouter();
-  const [showPlus, setShowPlus] = React.useState(false);
-  const [showPicker, setShowPicker] = React.useState(false);
-  const [recording, setRecording] = React.useState(false);
+export default function ChatDesktopPage() {
+  const contacts = [
+    { name: "Name of Customer", time: "13:45", preview: "Abbriviated message here" },
+    { name: "Name of Customer", time: "Yesterday", preview: "Abbriviated message here" },
+    { name: "Name of Customer", time: "Sep 28", preview: "Abbriviated message here" },
+    { name: "Name of Customer", time: "Sep 27", preview: "Abbriviated message here" },
+    { name: "Name of Customer", time: "Sep 27", preview: "Abbriviated message here" },
+  ];
 
+  const [showNotifications, setShowNotifications] = React.useState(false);
+  const [showLogout, setShowLogout] = React.useState(false);
   return (
-    <main className="min-h-dvh w-full grid place-items-center">
-      {/* Container 390x841, bg, pt-8, gap-5 */}
-      <section className="w-full max-w-[390px] min-h-[841px] bg-[#F5F3F1] flex flex-col items-center pt-8 gap-4">
-        {/* Header */}
-        <motion.header
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="w-[390px] h-[74px] flex flex-col items-center justify-end gap-3"
-        >
-          {/* Top row 45px: back + name group */}
-          <div className="w-[390px] h-[45px] flex flex-row flex-wrap items-center justify-center gap-x-[151px] gap-y-4 isolate relative">
-            <button
-              type="button"
-              aria-label="Back"
-              onClick={() => router.back()}
-              className="h-5 w-5 inline-flex items-center justify-center absolute left-4"
-            >
-              <ChevronLeft className="h-5 w-5 text-black/85" />
-            </button>
-
-            {/* Customer group */}
-            <div className="flex flex-row items-center gap-2">
-              <div className="h-[45px] w-[45px] rounded-full grid place-items-center" style={{ background: "rgba(9, 181, 88, 0.25)" }}>
-                <img
-                  src="/images/Dashboard_Home/accountCircle.png"
-                  alt="avatar"
-                  className="h-[41px] w-[41px] object-contain"
-                />
-              </div>
-              <span className="text-[21px] leading-[25px] font-semibold text-black" style={{ fontFamily: "Inter, Poppins, sans-serif" }}>
-                Name of Customer
-              </span>
-            </div>
-          </div>
-          {/* Divider */}
-          <div className="w-[390px] border-t border-black" />
-        </motion.header>
-
-        {/* Chat body */}
-        <motion.section
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="w-[392px] flex flex-col items-center gap-6 flex-1"
-        >
-          <div className="flex flex-col items-center gap-4 w-[280px] h-[134px]">
-            {/* Date bubble */}
-            <div className="min-w-[165px] h-[23px] px-[43px] py-[2px] bg-[#D9D9D9] rounded-[10px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] grid place-items-center">
-              <span className="text-[15px] leading-[22px] font-medium text-[#464646]">Today</span>
-            </div>
-
-            {/* Message bubble */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut", delay: 0.05 }}
-              className="relative w-[280px] h-[95px] shadow-[0_4px_4px_rgba(0,0,0,0.05)]"
-            >
-              <div className="absolute inset-0 bg-[#D9D9D9] rounded-[8px]" />
-              <div className="absolute left-[9px] top-[14px] w-[262px] h-[61px] grid place-items-center">
-                <p className="text-[15px] leading-[22px] font-normal text-[#464646] text-center">
-                  Esta persona está interesada en mesa de madera
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Typing indicator placeholder (hidden by default) */}
-            <div className="sr-only" aria-hidden>
-              typing...
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Footer input bar */}
-        <motion.footer
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="relative w-[392px] h-[36px] bg-[#464646] flex items-center gap-2 px-3"
-        >
-          <div className="relative">
-            <button
-              type="button"
-              aria-label="Add"
-              onClick={() => setShowPlus((v) => !v)}
-              className="h-5 w-5 grid place-items-center text-[#E3E3E3] active:scale-95 transition-transform"
-            >
-              <PlusCircle className="h-5 w-5" />
-            </button>
-            {showPlus && (
-              <motion.div
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                className="absolute bottom-8 left-0 z-40"
-              >
-                <div className="w-[200px] rounded-[10px] bg-white shadow-md border border-black/10 overflow-hidden">
-                  {["Send image", "Send file", "Share location"].map((label) => (
-                    <button
-                      key={label}
-                      type="button"
-                      onClick={() => setShowPlus(false)}
-                      className="w-full text-left px-4 py-2 text-sm hover:bg-stone-100 active:bg-stone-200"
-                    >
-                      {label}
-                    </button>
-                  ))}
+    <main className="hidden lg:flex w-full justify-center bg-[#F5F3F1] overflow-x-hidden">
+      <section className="w-full max-w-[1512px] min-h-[982px] flex flex-col pt-8">
+        <DesktopHeader onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
+        <div className="w-full mt-0 border border-black bg-[#FBF9F7] flex" style={{height: "848.79px"}}>
+          <aside className="w-[382px] h-full bg-[#F5F3F1] flex flex-col">
+            <div className="flex-1 border border-[#E4E1DD] bg-[#FBF9F7] px-3 pt-6 pb-3 flex flex-col gap-3">
+              <div className="px-4 flex items-center justify-between">
+                <div className="h-[45px] w-[45px] rounded-full grid place-items-center text-white bg-[#09B558]" aria-hidden>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg>
                 </div>
-              </motion.div>
-            )}
-          </div>
-          {/* Real input so mobile keyboard shows */}
-          <input
-            type="text"
-            placeholder="Message"
-            className="w-[264px] h-[21px] bg-[#D9D9D9] rounded-[10px] px-3 text-[14px] text-[#03121F] placeholder-[#03121F]/60 outline-none"
-          />
-          <button
-            type="button"
-            aria-label="Camera"
-            onClick={() => setShowPicker(true)}
-            className="h-5 w-5 grid place-items-center text-[#E3E3E3] active:scale-95 transition-transform"
-          >
-            <Camera className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="Mic"
-            onClick={() => {
-              setRecording(true);
-              setTimeout(() => setRecording(false), 2000);
-            }}
-            className="h-5 w-5 grid place-items-center text-[#E3E3E3] active:scale-95 transition-transform"
-          >
-            <Mic className="h-5 w-5" />
-          </button>
-        </motion.footer>
-
-        {/* Plus dropdown moved to be anchored above + button (inside footer) */}
-
-        {/* Mock image picker */}
-        {showPicker && (
-          <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center px-4" onClick={() => setShowPicker(false)}>
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.2 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-[340px] rounded-[12px] bg-[#FDFCFB] border border-[#E4E1DD] p-4 shadow"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-[18px] font-semibold">Select image</h3>
-                <button className="text-black/70" onClick={() => setShowPicker(false)}>✕</button>
               </div>
-              <div className="grid grid-cols-3 gap-2">
-                {[1,2,3,4,5,6].map((i) => (
-                  <div key={i} className="h-20 rounded bg-stone-200 grid place-items-center text-stone-500 text-sm">{`Img ${i}`}</div>
+              <div className="w-full h-6 rounded-[10px] bg-[#D9D9D9] px-[10px] grid grid-cols-[24px_1fr] items-center gap-[10px]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="#464646" strokeWidth="2"/><path d="M20 20l-3.5-3.5" stroke="#464646" strokeWidth="2" strokeLinecap="round"/></svg>
+                <span className="text-[15px] leading-[22px] text-[#464646]">Search</span>
+              </div>
+              <div className="flex flex-col gap-2 mt-1">
+                {contacts.map((c, i) => (
+                  <button key={i} type="button" className="w-full h-[45px] bg-[#FDFCFB] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-0 pr-[10px] flex items-center gap-[10px]">
+                    <div className="h-[45px] w-[45px] grid place-items-center">
+                      <div className="h-[36px] w-[36px] rounded-full" style={{background: "rgba(9,181,88,0.25)"}} />
+                    </div>
+                    <div className="flex-1 flex flex-col">
+                      <div className="flex items-start justify-between gap-[9px]">
+                        <span className="text-[15px] leading-[22px] font-medium text-black">{c.name}</span>
+                        <span className="text-[10px] leading-[15px] text-black/50 min-w-[34px] text-right">{c.time}</span>
+                      </div>
+                      <div className="flex items-center gap-[2px] text-[10px] leading-[15px] text-black/50">
+                        <span>{c.preview}</span>
+                      </div>
+                    </div>
+                  </button>
                 ))}
               </div>
-            </motion.div>
-          </div>
-        )}
+            </div>
+          </aside>
 
-        {/* Recording indicator */}
-        {recording && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed bottom-16 left-1/2 -translate-x-1/2 z-40 px-3 py-1 rounded-full bg-black/80 text-white text-sm"
-          >
-            Recording…
-          </motion.div>
-        )}
+          <section className="flex-1 h-full bg-[#FDFCFB] flex flex-col items-center">
+            <div className="w-[1130px] flex flex-col items-center gap-6 pt-6">
+              <div className="w-[242px] h-[45px] flex items-center gap-2">
+                <div className="h-[45px] w-[45px] grid place-items-center">
+                  <div className="h-[36px] w-[36px] rounded-full" style={{background: "rgba(9,181,88,0.25)"}} />
+                </div>
+                <div className="text-[21px] leading-[25px] font-semibold text-black">Name of Customer</div>
+              </div>
+              <div className="w-[1130px] flex flex-col justify-between" style={{height: "755.79px"}}>
+                <div className="mx-auto w-[280px] h-[134px] flex flex-col items-center gap-4">
+                  <div className="h-[23px] rounded-[10px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] bg-[#D9D9D9] px-[43px] grid place-items-center">
+                    <span className="text-[15px] leading-[22px] text-[#464646]">Today</span>
+                  </div>
+                  <div className="relative h-[95px] w-[280px]">
+                    <div className="absolute inset-0 rounded-[8px] bg-[#D9D9D9]" />
+                    <div className="absolute left-[9px] right-[9px] top-[16px] text-[15px] leading-[22px] text-[#464646] text-center">
+                      Esta persona está interesada en mesa de madera
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full h-[56px] bg-[#464646] flex items-end justify-center gap-2 px-4 py-4">
+                  <div className="h-6 w-6 grid place-items-center" aria-hidden>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="#E3E3E3" strokeWidth="2" strokeLinecap="round"/></svg>
+                  </div>
+                  <div className="flex-1 max-w-[1002px] h-6 bg-[#D9D9D9] rounded-[10px]" />
+                  <div className="flex items-center gap-2">
+                    <div className="h-6 w-6 grid place-items-center" aria-hidden>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="7" width="14" height="10" rx="2" stroke="#E3E3E3" strokeWidth="2"/><path d="M5 9l7 5 7-5" stroke="#E3E3E3" strokeWidth="2" strokeLinecap="round"/></svg>
+                    </div>
+                    <div className="h-6 w-6 grid place-items-center" aria-hidden>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M5 12h14" stroke="#E3E3E3" strokeWidth="2" strokeLinecap="round"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <NotificationOverlay open={showNotifications} onClose={() => setShowNotifications(false)} />
+        <LogoutOverlay open={showLogout} onClose={() => setShowLogout(false)} onConfirm={() => (window.location.href = "/login")} />
       </section>
     </main>
   );
