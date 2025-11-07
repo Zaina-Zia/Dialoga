@@ -30,16 +30,16 @@ export type CustomerCategoriesProps = {
 const CustomerCategories: React.FC<CustomerCategoriesProps> = ({ categories, onToggleCategory }) => {
   return (
     <section className="w-full grid place-items-center">
-      {/* 390px artboard width */}
-      <div className="w-full max-w-[390px]">
-        {/* Card 366px with 12px vertical padding per Figma */}
-        <div className="mx-auto w-[366px] rounded-[8px] border border-[#E4E1DD] bg-[#FDFCFB] py-3">
+      {/* Responsive artboard: mobile 390, desktop 1130 */}
+      <div className="w-full max-w-[390px] lg:max-w-[1130px]">
+        {/* Card: mobile 366, desktop 1130 with 24px/12px padding per spec */}
+        <div className="mx-auto w-[366px] lg:w-[1130px] rounded-[8px] border border-[#E4E1DD] bg-[#FBF9F7] py-3 lg:py-6">
           {/* Title row */}
-          <div className="px-[12px]">
+          <div className="px-[12px] lg:px-[12px]">
             <h2 className="text-[21px] leading-[32px] font-semibold text-black">Customer Categories</h2>
           </div>
           {/* List area */}
-          <div className="px-[12px] pt-1 pb-3 space-y-4">
+          <div className="px-[12px] pt-1 pb-3 lg:pt-3 lg:pb-3 space-y-4">
             {categories.map((c) => (
               <CategoryAccordion
                 key={c.id}

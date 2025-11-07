@@ -53,12 +53,12 @@ const CategoryAccordion: React.FC<CategoryAccordionProps> = ({
               <Icon className="h-5 w-5" />
             ) : null}
           </div>
-          <span className="text-base font-medium leading-6 text-black">{title}</span>
+          <span className="text-base lg:text-[18px] font-medium leading-6 lg:leading-[27px] text-black">{title}</span>
         </div>
         {isOpen ? (
-          <ChevronUp className="h-4 w-4 text-black/85" />
+          <ChevronUp className="h-4 w-4 lg:h-[15px] lg:w-[15px] text-black/85" />
         ) : (
-          <ChevronDown className="h-4 w-4 text-black/85" />
+          <ChevronDown className="h-4 w-4 lg:h-[15px] lg:w-[15px] text-black/85" />
         )}
       </button>
       <div className={`overflow-hidden transition-all ${isOpen ? 'max-h-[1000px] pt-2' : 'max-h-0'}`}>

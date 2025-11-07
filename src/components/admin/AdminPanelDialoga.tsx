@@ -2,6 +2,10 @@
 import React from "react";
 import { DashboardHeader } from "../../components/dashboard/DashboardHeader";
 import Footer from "../../components/layout/Footer";
+import DesktopHeader from "../dashboard/DesktopHeader";
+import DesktopFooter from "../dashboard/DesktopFooter";
+import { NotificationOverlay } from "../notifications/NotificationOverlay";
+import { LogoutOverlay } from "../overlays/LogoutOverlay";
 
 // Pixel-perfect Admin Panel - Dialoga Side (390x844)
 // TypeScript + Tailwind, functional component, semantic markup.
@@ -56,26 +60,64 @@ const UserBlock: React.FC = () => (
 );
 
 const AdminPanelDialoga: React.FC<{ onNotify?: () => void; onLogout?: () => void }> = ({ onNotify, onLogout }) => {
+  const [showNotifications, setShowNotifications] = React.useState(false);
+  const [showLogout, setShowLogout] = React.useState(false);
+
   return (
-    <main className="min-h-dvh w-full grid place-items-center bg-[#F5F3F1]">
-      {/* Frame 28: 390x844, padding-y:32, spaced content */}
-      <section className="w-full max-w-[390px] min-h-[844px] flex flex-col items-center pt-8 pb-8">
-        {/* Header from shared component (includes logo + divider) */}
-        <div className="w-[390px]">
-          <DashboardHeader hideBack />
-        </div>
-
-        {/* 16px gap below header divider per Figma (prevents avatar merging with line) */}
+    <main className="min-h-dvh w-full bg-[#F5F3F1]">
+      {/* Mobile layout */}
+      <section className="lg:hidden w-full max-w-[390px] min-h-[844px] mx-auto flex flex-col items-center pt-8 pb-8">
+        <div className="w-[390px]"><DashboardHeader hideBack /></div>
         <div className="h-4" />
-        {/* User + Table */}
         <UserBlock />
-
-        {/* Flexible spacer to respect 844 height and keep footer at bottom in mobile */}
         <div className="flex-1" />
+        <div className="w-[390px]"><Footer onNotify={onNotify ?? (() => {})} onLogout={onLogout ?? (() => {})} /></div>
+      </section>
 
-        {/* Footer */}
-        <div className="w-[390px]">
-          <Footer onNotify={onNotify ?? (() => {})} onLogout={onLogout ?? (() => {})} />
+      {/* Desktop layout */}
+      <section className="hidden lg:flex w-full justify-center">
+        <div className="w-full max-w-[1512px] flex flex-col gap-8 py-8 px-0">
+          <DesktopHeader />
+
+          {/* Content area: centered 1130px block */}
+          <div className="w-full grid place-items-center">
+            <div className="w-[1130px] flex flex-col gap-[21px]">
+              {/* Profile row */}
+              <div className="w-full h-[42px] flex items-start gap-[10px]">
+                <div className="h-[40px] w-[40px] rounded-full" style={{ background: "rgba(9, 181, 88, 0.25)" }} />
+                <div className="flex flex-col">
+                  <div className="text-[21px] leading-[32px] font-semibold text-black">Name of User</div>
+                  <div className="text-[12px] leading-[18px] text-black">figma......12@gmail.com</div>
+                </div>
+              </div>
+
+              {/* Title */}
+              <div className="w-full h-[42px]">
+                <div className="text-[21px] leading-[32px] font-bold text-black">Admin Panel</div>
+              </div>
+
+              {/* Table */}
+              <div className="w-full flex flex-col">
+                {/* Header row */}
+                <div className="w-full h-[27px] border-b border-[rgba(70,70,70,0.25)] flex items-center">
+                  <div className="flex-1 text-[15px] leading-[22px] font-medium text-black text-center">Company Name</div>
+                  <div className="flex-1 text-[15px] leading-[22px] font-medium text-black text-center">User</div>
+                  <div className="flex-1 text-[15px] leading-[22px] font-medium text-black text-center">Phone</div>
+                  <div className="flex-1 text-[15px] leading-[22px] font-medium text-black text-center">API Token</div>
+                </div>
+                {[...Array(10)].map((_, i) => (
+                  <div key={i} className="w-full h-[27px] border-b border-[rgba(70,70,70,0.25)] flex items-center">
+                    <div className="flex-1 text-[15px] leading-[22px] text-black text-center">Abc Inc.</div>
+                    <div className="flex-1 text-[15px] leading-[22px] text-black text-center">abc.abc.abc.@gmail.com</div>
+                    <div className="flex-1 text-[15px] leading-[22px] text-black text-center">000-000-0000</div>
+                    <div className="flex-1 text-[15px] leading-[22px] text-black text-center">dtg5dD</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <DesktopFooter />
         </div>
       </section>
     </main>

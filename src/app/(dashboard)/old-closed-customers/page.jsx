@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { DashboardHeader } from "../../../components/dashboard/DashboardHeader";
 import Footer from "../../../components/layout/Footer";
+import DesktopHeader from "../../../components/dashboard/DesktopHeader";
+import DesktopFooter from "../../../components/dashboard/DesktopFooter";
 import { LogoutOverlay } from "../../../components/overlays/LogoutOverlay";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -34,25 +36,28 @@ export default function OldClosedCustomersPage() {
   ];
 
   return (
-    <main className="min-h-dvh w-full grid place-items-center bg-[#F5F3F1]">
-      {/* Frame 23: 390 width, 844 height, padding-y:32, gap:48 */}
-      <section className="w-full max-w-[390px] min-h-[844px] flex flex-col items-center gap-12 py-8">
-        {/* Header (shared, no back like dashboard) */}
-        <div className="w-[390px] flex flex-col">
-          <DashboardHeader hideBack />
+    <main className="min-h-dvh w-full bg-[#F5F3F1]">
+      <section className="mx-auto w-full max-w-[390px] lg:max-w-[1512px] min-h-[844px] flex flex-col gap-8 lg:gap-10 py-8 lg:px-10">
+        {/* Headers: mobile vs desktop */}
+        <div className="lg:hidden w-full grid place-items-center">
+          <div className="w-[390px] flex flex-col">
+            <DashboardHeader hideBack />
+          </div>
+        </div>
+        <div className="hidden lg:block">
+          <DesktopHeader onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
         </div>
 
-        {/* Content block (centered) */}
-        <div className="w-[390px] flex flex-col items-center gap-4">
-          {/* Card 366x307, border, 12px vertical padding, rounded */}
-          <div className="w-[366px] rounded-[8px] border border-[#E4E1DD] bg-[#FDFCFB] py-3">
-            {/* Title row: px-12, 21/25 */}
+        {/* Content block */}
+        <div className="w-full grid place-items-center">
+          {/* Card: mobile 366px, desktop 1130px */}
+          <div className="w-[366px] lg:w-[1130px] rounded-[8px] border border-[#E4E1DD] bg-[#FBF9F7] py-3 lg:py-6">
+            {/* Title row */}
             <div className="px-[12px]">
-              <h2 className="text-[21px] leading-[25px] font-semibold text-black">Old/Closed Customers</h2>
+              <h2 className="text-[21px] leading-[25px] lg:leading-[32px] font-semibold text-black">Old/Closed Customers</h2>
             </div>
-
-            {/* List area: px-12, gap-4 */}
-            <div className="px-[12px] pt-2 pb-3 space-y-4">
+            {/* List area */}
+            <div className="px-[12px] pt-2 lg:pt-3 pb-3 space-y-4">
               {categories.map(({ key, title, imageSrc }) => {
                 const isOpen = open[key];
                 return (
@@ -66,7 +71,7 @@ export default function OldClosedCustomersPage() {
                       <div className="flex items-center gap-1.5">
                         <span className="h-6 w-6 grid place-items-center rounded text-emerald-600">
                           <img src={imageSrc} alt="" className="h-5 w-5 object-contain" />
-                        </span>
+                          </span>
                         <span className="text-[18px] leading-[27px] font-medium text-black">{title}</span>
                       </div>
                       {isOpen ? (
@@ -94,9 +99,12 @@ export default function OldClosedCustomersPage() {
         {/* Logout overlay */}
         <LogoutOverlay open={showLogout} onClose={() => setShowLogout(false)} onConfirm={() => router.push('/login')} />
 
-        {/* Footer (shared) */}
-        <div className="w-[390px] mt-auto">
+        {/* Footers: mobile vs desktop */}
+        <div className="lg:hidden w-[390px] mt-auto mx-auto">
           <Footer onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
+        </div>
+        <div className="hidden lg:block">
+          <DesktopFooter />
         </div>
       </section>
     </main>
