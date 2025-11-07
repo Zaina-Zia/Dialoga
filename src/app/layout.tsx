@@ -10,16 +10,13 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Dialoga",
-  description: "Login",
+  description: "App",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-sans antialiased bg-[#F5F3F1]`}>
-        {children}
-      </body>
+      <body className={`${poppins.variable} font-sans antialiased bg-[#F5F3F1]`}>{children}</body>
     </html>
   );
 }
-
