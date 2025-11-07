@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
   const router = useRouter();
   return (
-    <header className="w-full grid place-items-center">
+    <header className="w-full grid place-items-end">
       {/* Outer container 390 width, ~88.19 height */}
       <div className="w-full max-w-[390px] h-[88.19px] flex flex-col">
         {/* Inner frame (Frame 11) */}
@@ -29,8 +29,9 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
         </div>
       </div>
       {/* Full-bleed divider */}
-      <div className="w-screen border-t border-black mt-2 self-center" />
+      <div className="w-screen border-t border-black mt-2" />
     </header>
   );
 }
+
 

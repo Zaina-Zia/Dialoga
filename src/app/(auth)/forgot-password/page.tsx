@@ -50,7 +50,7 @@ export default function ForgotPasswordPage() {
 
           {/* Heading (334x32, Poppins 600, 21px) */}
           <h1 className="w-[334px] h-[32px] text-[21px] leading-[21px] font-semibold text-black">
-            Forgot your password?
+            Forgot your password
           </h1>
 
           {/* Email input (332x45) */}

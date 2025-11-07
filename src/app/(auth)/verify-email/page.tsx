@@ -30,7 +30,7 @@ export default function VerifyEmailPage() {
         <header className="w-[390px] h-[36px] px-4 py-2 flex items-center">
           <Link href="/login" aria-label="Back to Login" className="w-[20px] h-[20px] inline-flex items-center justify-center">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="#03121F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M15 18L9 12L15 6" stroke="#03121F" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"  transform="translate(-6, 0)"/>
             </svg>
           </Link>
         </header>
