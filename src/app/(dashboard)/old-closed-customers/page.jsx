@@ -45,7 +45,11 @@ export default function OldClosedCustomersPage() {
           </div>
         </div>
         <div className="hidden lg:block">
-          <DesktopHeader onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
+          <DesktopHeader
+            onNotify={() => setShowNotifications(true)}
+            onLogout={() => setShowLogout(true)}
+            showAdminControl
+          />
         </div>
 
         {/* Content block */}
