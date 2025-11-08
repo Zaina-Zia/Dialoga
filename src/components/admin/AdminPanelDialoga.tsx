@@ -19,19 +19,27 @@ import Link from "next/link";
 const getCompanies = (): Company[] => {
   if (typeof window === "undefined") return [];
   const stored = localStorage.getItem("admin_companies");
-  return stored ? JSON.parse(stored) : [
-    { id: "1", company: "Abc Inc.", user: "abc.abc.abc.@gmail.com", phone: "000-000-0000", token: "dtg5dD", status: "active" },
-    { id: "2", company: "efg Inc.", user: "test.emailaddress@gmail.com", phone: "000-000", token: "dtg5dD", status: "active" },
-    { id: "3", company: "hij Inc.", user: "abc.abc.abc.@gmail.com", phone: "000-000-0000", token: "dtg5dD", status: "paused" },
-    { id: "4", company: "klm Inc.", user: "abc.abc.abc.@gmail.com", phone: "000-000", token: "dtg5dD", status: "active" },
-  ].map((r, i) => ({
-    id: r.id || String(i + 1),
-    name: r.company,
-    user: r.user,
-    phone: r.phone,
-    token: r.token,
-    status: r.status || "active",
-  }));
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored) as unknown[];
+      return parsed.map((item: any) => ({
+        id: item.id || "",
+        name: item.name || "",
+        user: item.user || "",
+        phone: item.phone || "",
+        token: item.token || "",
+        status: (item.status === "paused" ? "paused" : "active") as "active" | "paused",
+      }));
+    } catch {
+      return [];
+    }
+  }
+  return [
+    { id: "1", name: "Abc Inc.", user: "abc.abc.abc.@gmail.com", phone: "000-000-0000", token: "dtg5dD", status: "active" as const },
+    { id: "2", name: "efg Inc.", user: "test.emailaddress@gmail.com", phone: "000-000", token: "dtg5dD", status: "active" as const },
+    { id: "3", name: "hij Inc.", user: "abc.abc.abc.@gmail.com", phone: "000-000-0000", token: "dtg5dD", status: "paused" as const },
+    { id: "4", name: "klm Inc.", user: "abc.abc.abc.@gmail.com", phone: "000-000", token: "dtg5dD", status: "active" as const },
+  ];
 };
 
 const saveCompanies = (companies: Company[]) => {
