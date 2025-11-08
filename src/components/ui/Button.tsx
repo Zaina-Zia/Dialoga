@@ -1,7 +1,9 @@
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type MotionButtonProps = HTMLMotionProps<"button">;
+
+export type ButtonProps = MotionButtonProps & {
   variant?: "primary" | "secondary";
 };
 
@@ -15,13 +17,26 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       secondary:
         "bg-[#FDFCFB] text-[#03121F] border border-[#03121F]/20 hover:bg-[#f6f4f2]",
     } as const;
+
+    const {
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onDragEnter,
+      onDragExit,
+      onDragLeave,
+      onDragOver,
+      onDrop,
+      ...restProps
+    } = props as any;
+
     return (
       <motion.button
         ref={ref}
         className={`${base} ${variants[variant]} ${className}`}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.1 }}
-        {...props}
+        {...restProps}
       />
     );
   }

@@ -66,21 +66,21 @@ export default function DashboardDesktop() {
                   {tasks.map((task, idx) => {
                     const cardContent = (
                       <div key={idx} className="flex h-[70px] w-full flex-col items-center justify-center rounded-[8px] border border-[#03121F]/20 bg-[#FDFCFB] shadow-[0_4px_4px_rgba(0,0,0,0.05)] hover:bg-[#F5F3F1] transition cursor-pointer">
-                        <div className="flex flex-col items-center" style={{ gap: `${task.desktop?.iconTextGap ?? 2}px` }}>
-                          <img src={task.iconSrc} alt={task.iconAlt} className="h-[24px] w-[24px] object-contain" />
-                          <div className="flex flex-col items-center" style={{ gap: `${task.desktop?.textGap ?? 1}px` }}>
-                            <span
-                              className="font-medium text-black text-center"
-                              style={{ width: `${task.desktop?.labelWidth ?? 58}px`, fontSize: `${task.desktop?.labelFontSize ?? 12}px`, lineHeight: `${task.desktop?.labelLineHeight ?? 18}px` }}
-                            >
-                              {task.label}
-                            </span>
-                            <span className="font-medium text-black text-center" style={{ fontSize: "12px", lineHeight: "18px" }}>
-                              {task.count}
-                            </span>
-                          </div>
+                      <div className="flex flex-col items-center" style={{ gap: `${task.desktop?.iconTextGap ?? 2}px` }}>
+                        <img src={task.iconSrc} alt={task.iconAlt} className="h-[24px] w-[24px] object-contain" />
+                        <div className="flex flex-col items-center" style={{ gap: `${task.desktop?.textGap ?? 1}px` }}>
+                          <span
+                            className="font-medium text-black text-center"
+                            style={{ width: `${task.desktop?.labelWidth ?? 58}px`, fontSize: `${task.desktop?.labelFontSize ?? 12}px`, lineHeight: `${task.desktop?.labelLineHeight ?? 18}px` }}
+                          >
+                            {task.label}
+                          </span>
+                          <span className="font-medium text-black text-center" style={{ fontSize: "12px", lineHeight: "18px" }}>
+                            {task.count}
+                          </span>
                         </div>
                       </div>
+                    </div>
                     );
                     return task.href ? (
                       <Link key={idx} href={task.href}>
@@ -137,15 +137,15 @@ export default function DashboardDesktop() {
                     const href = c.label === "Closed" ? "/old-closed-customers" : "/customer-categories";
                     return (
                       <Link key={i} href={href} className="flex h-[70px] w-full flex-col items-center justify-center rounded-[8px] border border-[#03121F]/20 bg-[#FDFCFB] shadow-[0_4px_4px_rgba(0,0,0,0.05)] hover:bg-[#F5F3F1] transition">
-                        <div className="flex flex-col items-center" style={{ gap: `${c.gap}px` }}>
-                          <img src={c.iconSrc} alt={c.label} className="h-[24px] w-[24px] object-contain" />
-                          <div
-                            className="font-medium text-black text-center"
-                            style={{ width: `${c.textW}px`, height: `${c.textH}px`, fontSize: `${c.labelFontSize}px`, lineHeight: `${c.labelLineHeight}px` }}
-                          >
-                            {c.label}
-                          </div>
+                      <div className="flex flex-col items-center" style={{ gap: `${c.gap}px` }}>
+                        <img src={c.iconSrc} alt={c.label} className="h-[24px] w-[24px] object-contain" />
+                        <div
+                          className="font-medium text-black text-center"
+                          style={{ width: `${c.textW}px`, height: `${c.textH}px`, fontSize: `${c.labelFontSize}px`, lineHeight: `${c.labelLineHeight}px` }}
+                        >
+                          {c.label}
                         </div>
+                      </div>
                       </Link>
                     );
                   })}

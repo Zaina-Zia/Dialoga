@@ -111,13 +111,13 @@ export default function ChatViewPage() {
       <section className="lg:hidden w-full h-screen max-h-screen flex flex-col overflow-hidden bg-[#F5F3F1]">
         {/* Fixed Header */}
         <div className="flex-none w-full bg-[#F5F3F1]">
-          <ChatViewHeader name={selectedContact.name} />
+        <ChatViewHeader name={selectedContact.name} />
         </div>
 
         {/* Messages area - Only this scrolls */}
         <div className="flex-1 min-h-0 w-full overflow-y-auto overflow-x-hidden flex flex-col gap-3 px-4 py-4 bg-[#F5F3F1]">
           <div className="flex justify-center items-center w-[165px] h-[23px] bg-[#D9D9D9] shadow-[0_4px_4px_rgba(0,0,0,0.05)] rounded-[10px] mx-auto mb-2 flex-none">
-            <span className="text-[#464646] text-[15px] leading-[22px] font-medium font-[Poppins]">Today</span>
+              <span className="text-[#464646] text-[15px] leading-[22px] font-medium font-[Poppins]">Today</span>
           </div>
           {messages.map((msg, index) => (
             <MessageBubble key={msg.id} message={msg} index={index} />
@@ -138,8 +138,8 @@ export default function ChatViewPage() {
         {/* Fixed Input Area */}
         <div className="flex-none w-full h-[40px] bg-[#464646] flex items-center px-4 gap-2">
           <button type="button" onClick={handleAddImage} className="h-6 w-6 grid place-items-center flex-none" aria-label="Add">
-            <Plus className="h-6 w-6 text-[#E3E3E3]" />
-          </button>
+              <Plus className="h-6 w-6 text-[#E3E3E3]" />
+            </button>
           <input
             type="text"
             value={inputText}
@@ -152,14 +152,14 @@ export default function ChatViewPage() {
             <Send className="h-5 w-5 text-[#E3E3E3]" />
           </button>
           <button type="button" className="h-6 w-6 grid place-items-center flex-none" aria-label="Attach">
-            <Paperclip className="h-5 w-5 text-[#E3E3E3]" />
-          </button>
+              <Paperclip className="h-5 w-5 text-[#E3E3E3]" />
+            </button>
           <button type="button" className="h-6 w-6 grid place-items-center flex-none" aria-label="Camera">
-            <Camera className="h-5 w-5 text-[#E3E3E3]" />
-          </button>
+              <Camera className="h-5 w-5 text-[#E3E3E3]" />
+            </button>
           <button type="button" onClick={handleRecord} className="h-6 w-6 grid place-items-center flex-none" aria-label="Record">
-            <Mic className="h-5 w-5 text-[#E3E3E3]" />
-          </button>
+              <Mic className="h-5 w-5 text-[#E3E3E3]" />
+            </button>
         </div>
       </section>
 
@@ -177,103 +177,103 @@ export default function ChatViewPage() {
         <div className="flex-1 min-h-0 flex border-t border-black bg-[#FBF9F7] overflow-hidden">
           {/* Contact list (382px) - Fixed */}
           <aside className="w-[382px] bg-[#F5F3F1] border-r border-[#E4E1DD] flex flex-col overflow-hidden">
-            <div className="relative h-full w-[382px] bg-[#FBF9F7] border border-[#E4E1DD] pt-6 pb-3 px-3 flex flex-col gap-[11px]">
+              <div className="relative h-full w-[382px] bg-[#FBF9F7] border border-[#E4E1DD] pt-6 pb-3 px-3 flex flex-col gap-[11px]">
               {/* HEADER (Frame 23) - Fixed */}
               <div className="w-full flex items-center justify-between flex-none">
-                {/* Search (358x24) */}
-                <div className="relative h-[24px] w-full bg-[#D9D9D9] rounded-[10px] mt-8">
-                  <Search className="absolute left-[10px] top-1/2 -translate-y-1/2 h-5 w-5 text-[#464646]" />
-                  <input
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search"
-                    className="w-full h-full rounded-[10px] bg-transparent outline-none pl-[36px] pr-2 text-[15px] leading-[22px] text-[#464646] placeholder-[#464646]"
-                  />
+                  {/* Search (358x24) */}
+                  <div className="relative h-[24px] w-full bg-[#D9D9D9] rounded-[10px] mt-8">
+                    <Search className="absolute left-[10px] top-1/2 -translate-y-1/2 h-5 w-5 text-[#464646]" />
+                    <input
+                      type="text"
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                      placeholder="Search"
+                      className="w-full h-full rounded-[10px] bg-transparent outline-none pl-[36px] pr-2 text-[15px] leading-[22px] text-[#464646] placeholder-[#464646]"
+                    />
+                  </div>
                 </div>
-              </div>
-              {/* Floating plus (Vector 45x45) */}
-              <button
-                type="button"
-                aria-label="New chat"
-                className="absolute top-0 right-3 z-10 h-[45px] w-[45px] rounded-full bg-[#09B558] grid place-items-center shadow-[0_4px_4px_rgba(0,0,0,0.05)]"
-                onClick={() => setAttachments((p) => [...p, "Image"])}
-              >
-                <Plus className="h-6 w-6 text-white" />
-              </button>
+                {/* Floating plus (Vector 45x45) */}
+                <button
+                  type="button"
+                  aria-label="New chat"
+                  className="absolute top-0 right-3 z-10 h-[45px] w-[45px] rounded-full bg-[#09B558] grid place-items-center shadow-[0_4px_4px_rgba(0,0,0,0.05)]"
+                  onClick={() => setAttachments((p) => [...p, "Image"])}
+                >
+                  <Plus className="h-6 w-6 text-white" />
+                </button>
 
               {/* MESSAGE AREA (contact list) - Scrollable */}
               <div className="flex-1 flex flex-col gap-2 overflow-y-auto pr-0 min-h-0">
-                {filtered.map((contact, index) => (
-                  <button
-                    key={`${contact.name}-${index}`}
-                    type="button"
-                    onClick={() => setSelectedContactIndex(index)}
+                  {filtered.map((contact, index) => (
+                    <button
+                      key={`${contact.name}-${index}`}
+                      type="button"
+                      onClick={() => setSelectedContactIndex(index)}
                     className={`h-[45px] w-full rounded-[0px] bg-[#FDFCFB] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-[10px] flex items-center gap-[10px] transition flex-none ${
-                      selectedContactIndex === index ? "ring-1 ring-[#09B558]/60" : ""
-                    }`}
-                  >
-                    <div
-                      className="h-[45px] w-[45px] rounded-full overflow-hidden grid place-items-center"
-                      style={{ background: "rgba(9, 181, 88, 0.25)" }}
+                        selectedContactIndex === index ? "ring-1 ring-[#09B558]/60" : ""
+                      }`}
                     >
-                      <img
-                        src="/images/Dashboard_Home/accountCircle.png"
-                        alt="avatar"
-                        className="h-[41px] w-[41px] object-contain"
-                      />
-                    </div>
-                    <div className="flex-1 flex flex-col justify-center">
-                      <div className="flex items-start justify-between gap-[9px]">
-                        <span className="text-[15px] leading-[22px] font-medium text-black">
-                          {contact.name}
-                        </span>
-                        <span className="text-[10px] leading-[15px] text-black/50">{contact.time}</span>
+                      <div
+                        className="h-[45px] w-[45px] rounded-full overflow-hidden grid place-items-center"
+                        style={{ background: "rgba(9, 181, 88, 0.25)" }}
+                      >
+                        <img
+                          src="/images/Dashboard_Home/accountCircle.png"
+                          alt="avatar"
+                          className="h-[41px] w-[41px] object-contain"
+                        />
                       </div>
-                      <span className="text-[10px] leading-[15px] text-black/50">{contact.preview}</span>
-                    </div>
-                  </button>
-                ))}
+                      <div className="flex-1 flex flex-col justify-center">
+                        <div className="flex items-start justify-between gap-[9px]">
+                          <span className="text-[15px] leading-[22px] font-medium text-black">
+                            {contact.name}
+                          </span>
+                          <span className="text-[10px] leading-[15px] text-black/50">{contact.time}</span>
+                        </div>
+                        <span className="text-[10px] leading-[15px] text-black/50">{contact.preview}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-          </aside>
+            </aside>
 
           {/* Conversation column - Fixed height, flex column */}
           <div className="flex-1 flex justify-center min-w-0 overflow-hidden">
             <div className="w-full max-w-[1130px] h-full bg-[#FDFCFB] flex flex-col overflow-hidden">
               {/* HEADER - Fixed */}
               <div className="flex flex-col items-center gap-4 pt-4 pb-2 flex-none">
-                <div className="flex items-center gap-2">
-                  <div className="h-[45px] w-[45px] grid place-items-center">
-                    <div
-                      className="h-[36px] w-[36px] rounded-full"
-                      style={{ background: "rgba(9, 181, 88, 0.25)" }}
-                    />
+                  <div className="flex items-center gap-2">
+                    <div className="h-[45px] w-[45px] grid place-items-center">
+                      <div
+                        className="h-[36px] w-[36px] rounded-full"
+                        style={{ background: "rgba(9, 181, 88, 0.25)" }}
+                      />
+                    </div>
+                    <span className="text-[21px] leading-[25px] font-semibold text-black">
+                      {selectedContact.name}
+                    </span>
                   </div>
-                  <span className="text-[21px] leading-[25px] font-semibold text-black">
-                    {selectedContact.name}
-                  </span>
-                </div>
               </div>
 
               {/* MESSAGE AREA - Only this scrolls */}
               <div className="flex-1 min-h-0 w-full overflow-y-auto flex flex-col gap-3 px-4 py-2">
                 <div className="flex justify-center items-center h-[23px] px-[43px] bg-[#D9D9D9] shadow-[0_4px_4px_rgba(0,0,0,0.05)] rounded-[10px] mx-auto mb-2">
-                  <span className="text-[#464646] text-[15px] leading-[22px] font-medium">Today</span>
+                    <span className="text-[#464646] text-[15px] leading-[22px] font-medium">Today</span>
                 </div>
                 {messages.map((msg, index) => (
                   <MessageBubble key={msg.id} message={msg} index={index} />
                 ))}
                 <TypingIndicator isTyping={isTyping} />
                 <div ref={messagesEndRef} />
-              </div>
+                </div>
 
               {/* COMPOSER - Fixed at bottom */}
               <div className="w-full flex-none border-t border-[#E4E1DD]">
-                <div className="w-full h-[56px] bg-[#464646] flex items-center gap-3 px-4">
-                  <button type="button" onClick={() => setAttachments((p) => [...p, "Imagen"])} className="h-6 w-6 grid place-items-center" aria-label="Add">
-                    <Plus className="h-6 w-6 text-[#E3E3E3]" />
-                  </button>
+                  <div className="w-full h-[56px] bg-[#464646] flex items-center gap-3 px-4">
+                    <button type="button" onClick={() => setAttachments((p) => [...p, "Imagen"])} className="h-6 w-6 grid place-items-center" aria-label="Add">
+                      <Plus className="h-6 w-6 text-[#E3E3E3]" />
+                    </button>
                   <input
                     type="text"
                     value={inputText}
@@ -285,24 +285,24 @@ export default function ChatViewPage() {
                   <button type="button" onClick={handleSend} disabled={!inputText.trim()} className="h-6 w-6 grid place-items-center disabled:opacity-50" aria-label="Send">
                     <Send className="h-5 w-5 text-[#E3E3E3]" />
                   </button>
-                  <button type="button" className="h-6 w-6 grid place-items-center" aria-label="Attach">
-                    <Paperclip className="h-5 w-5 text-[#E3E3E3]" />
-                  </button>
-                  <button type="button" className="h-6 w-6 grid place-items-center" aria-label="Camera">
-                    <Camera className="h-5 w-5 text-[#E3E3E3]" />
-                  </button>
-                  <button type="button" onClick={() => setAttachments((p) => [...p, "Nota de voz"])} className="h-6 w-6 grid place-items-center" aria-label="Record">
-                    <Mic className="h-5 w-5 text-[#E3E3E3]" />
-                  </button>
+                    <button type="button" className="h-6 w-6 grid place-items-center" aria-label="Attach">
+                      <Paperclip className="h-5 w-5 text-[#E3E3E3]" />
+                    </button>
+                    <button type="button" className="h-6 w-6 grid place-items-center" aria-label="Camera">
+                      <Camera className="h-5 w-5 text-[#E3E3E3]" />
+                    </button>
+                    <button type="button" onClick={() => setAttachments((p) => [...p, "Nota de voz"])} className="h-6 w-6 grid place-items-center" aria-label="Record">
+                      <Mic className="h-5 w-5 text-[#E3E3E3]" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
         {/* Overlays */}
-        <NotificationOverlay open={showNotifications} onClose={() => setShowNotifications(false)} />
-        <LogoutOverlay open={showLogout} onClose={() => setShowLogout(false)} onConfirm={() => router.push("/login")} />
+          <NotificationOverlay open={showNotifications} onClose={() => setShowNotifications(false)} />
+          <LogoutOverlay open={showLogout} onClose={() => setShowLogout(false)} onConfirm={() => router.push("/login")} />
       </section>
 
       {/* Overlays */}
