@@ -1,0 +1,45 @@
+[
+  {
+    "id": "0",
+    "contactName": "Name of Customer",
+    "preview": "Abbreviated message here",
+    "time": "13:45",
+    "messages": [
+      {
+        "id": "1",
+        "text": "Esta persona está interesada en mesa de madera",
+        "timestamp": "13:45",
+        "sender": "customer"
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "contactName": "Name of Customer",
+    "preview": "Abbreviated message here",
+    "time": "Yesterday",
+    "messages": []
+  },
+  {
+    "id": "2",
+    "contactName": "Name of Customer",
+    "preview": "Abbreviated message here",
+    "time": "Sep 28",
+    "messages": []
+  },
+  {
+    "id": "3",
+    "contactName": "Name of Customer",
+    "preview": "Abbreviated message here",
+    "time": "Sep 27",
+    "messages": []
+  },
+  {
+    "id": "4",
+    "contactName": "Name of Customer",
+    "preview": "Abbreviated message here",
+    "time": "Sep 27",
+    "messages": []
+  }
+]
+

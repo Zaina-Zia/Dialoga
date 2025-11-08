@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "name": "User Name",
+    "email": "admin@example.com",
+    "phone": "",
+    "role": "company"
+  },
+  {
+    "id": "2",
+    "name": "Name of User",
+    "email": "figma......12@gmail.com",
+    "phone": "",
+    "role": "super-admin"
+  }
+]
+

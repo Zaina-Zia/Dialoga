@@ -20,9 +20,9 @@ export default function DashboardHomePage() {
     router.push("/login");
   };
   const tasks = [
-    { label: "Mensajes", count: 7, iconSrc: "/images/Dashboard_Home/mensajes.png", iconAlt: "Mensajes" },
-    { label: "Envío", count: 7, iconSrc: "/images/Dashboard_Home/envio.png", iconAlt: "Envío" },
-    { label: "Visitas a la tienda", count: 7, iconSrc: "/images/Dashboard_Home/visitas.png", iconAlt: "Visitas" },
+    { label: "Mensajes", count: 7, iconSrc: "/images/Dashboard_Home/mensajes.png", iconAlt: "Mensajes", href: "/chat" },
+    { label: "Envío", count: 7, iconSrc: "/images/Dashboard_Home/envio.png", iconAlt: "Envío", href: "/inventory" },
+    { label: "Visitas a la tienda", count: 7, iconSrc: "/images/Dashboard_Home/visitas.png", iconAlt: "Visitas", href: "/customer-categories" },
   ];
 
   const categories = [
@@ -77,7 +77,9 @@ export default function DashboardHomePage() {
                 </Link>
                 <div className="w-[334px] flex flex-col gap-2">
                   {messages.map((m, i) => (
-                    <MessageItem key={i} name={m.name} product={m.product} />
+                    <Link key={i} href="/chat" className="active:opacity-90">
+                      <MessageItem name={m.name} product={m.product} />
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -117,10 +119,54 @@ export default function DashboardHomePage() {
                         </Link>
                       );
                     }
-                    return card;
+                    return (
+                      <Link key={i} href="/customer-categories" aria-label={`Go to ${c.label} category`} className="active:scale-[0.99] transition">
+                        {card}
+                      </Link>
+                    );
                   })}
                 </div>
               </div>
+            </div>
+
+            {/* Inventory & Profile Links */}
+            <div className="w-[358px] flex flex-col gap-2">
+              <Link href="/inventory" className="w-full h-[61px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-3 py-2 flex items-center justify-between active:opacity-90" aria-label="Go to Inventory">
+                <div className="flex items-center gap-3">
+                  <div className="w-[40px] h-[40px] bg-[#F5F3F1] rounded-[4px] flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 7H4M20 12H4M20 17H4" stroke="#464646" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[15px] leading-[22px] font-medium text-black">Inventory</span>
+                    <span className="text-[12px] leading-[18px] text-[#464646]">Manage products</span>
+                  </div>
+                </div>
+                <div className="w-[15.5px] h-[15.5px] inline-flex items-center justify-center" aria-hidden>
+                  <svg width="15.5" height="15.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L16 12L10 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </Link>
+              <Link href="/profile" className="w-full h-[61px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-3 py-2 flex items-center justify-between active:opacity-90" aria-label="Go to Profile">
+                <div className="flex items-center gap-3">
+                  <div className="w-[40px] h-[40px] bg-[#F5F3F1] rounded-[4px] flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[15px] leading-[22px] font-medium text-black">Profile</span>
+                    <span className="text-[12px] leading-[18px] text-[#464646]">Account & Payments</span>
+                  </div>
+                </div>
+                <div className="w-[15.5px] h-[15.5px] inline-flex items-center justify-center" aria-hidden>
+                  <svg width="15.5" height="15.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 6L16 12L10 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </Link>
             </div>
           </div>
 

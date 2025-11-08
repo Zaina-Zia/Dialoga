@@ -7,6 +7,7 @@ export type TaskStat = {
   iconAlt?: string;
   label: string;
   count: number | string;
+  href?: string;
 };
 
 type Props = {
@@ -32,6 +33,7 @@ export function YourTasksSection({ tasks }: Props) {
               label={t.label}
               count={t.count}
               variant={i === 2 ? "wide" : "narrow"}
+              href={t.href}
             />
           ))}
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 type Props = {
   iconSrc: string;
@@ -8,10 +9,11 @@ type Props = {
   count: number | string;
   className?: string;
   variant?: "narrow" | "wide";
+  href?: string;
 };
 
-export function TaskStatCard({ iconSrc, iconAlt = "", label, count, className, variant = "narrow" }: Props) {
-  return (
+export function TaskStatCard({ iconSrc, iconAlt = "", label, count, className, variant = "narrow", href }: Props) {
+  const content = (
     <div className={"relative w-[110px] h-[70px]" + (className ? ` ${className}` : "")}> 
       <div className="absolute inset-0 bg-[#FDFCFB] border border-[#03121F]/20 rounded-[8px]" />
       {variant === "narrow" ? (
@@ -33,4 +35,14 @@ export function TaskStatCard({ iconSrc, iconAlt = "", label, count, className, v
       )}
     </div>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className="block active:opacity-90">
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 }

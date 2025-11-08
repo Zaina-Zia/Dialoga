@@ -1,0 +1,35 @@
+[
+  {
+    "id": "1",
+    "name": "Abc Inc.",
+    "user": "abc.abc.abc.@gmail.com",
+    "phone": "000-000-0000",
+    "token": "dtg5dD",
+    "status": "active"
+  },
+  {
+    "id": "2",
+    "name": "efg Inc.",
+    "user": "test.emailaddress@gmail.com",
+    "phone": "000-000",
+    "token": "dtg5dD",
+    "status": "active"
+  },
+  {
+    "id": "3",
+    "name": "hij Inc.",
+    "user": "abc.abc.abc.@gmail.com",
+    "phone": "000-000-0000",
+    "token": "dtg5dD",
+    "status": "paused"
+  },
+  {
+    "id": "4",
+    "name": "klm Inc.",
+    "user": "abc.abc.abc.@gmail.com",
+    "phone": "000-000",
+    "token": "dtg5dD",
+    "status": "active"
+  }
+]
+

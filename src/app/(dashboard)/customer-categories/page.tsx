@@ -33,9 +33,7 @@ const CustomerCategoriesPage: React.FC = () => {
   return (
     <div className="min-h-screen w-full bg-[#F5F3F1]">
       {/* Container wrapper */}
-      <div className="mx-auto flex min-h-screen w-full max-w-[390px] flex-col gap-8 px-0 pt-8 pb-8 
-                      lg:max-w-[1512px] lg:gap-8 lg:pt-10 lg:pb-10 lg:px-[60px] lg:bg-[#F5F3F1]">
-        
+      <div className="mx-auto flex min-h-screen w-full max-w-[390px] flex-col gap-8 px-0 pt-8 pb-8 lg:max-w-[1512px] lg:gap-8 lg:pt-10 lg:pb-10 lg:px-[60px] lg:bg-[#F5F3F1]">
         {/* Header section */}
         <div className="lg:hidden">
           <DashboardHeader />
@@ -48,8 +46,7 @@ const CustomerCategoriesPage: React.FC = () => {
         </div>
 
         {/* Main content area */}
-        <main className="flex-1 flex w-full flex-col justify-start gap-4 py-4 
-                         lg:gap-6 lg:py-0 lg:items-center lg:justify-start">
+        <main className="flex-1 flex w-full flex-col justify-start gap-4 py-4 lg:gap-6 lg:py-0 lg:items-center lg:justify-start">
           {/* Customer Categories */}
           <div className="w-full max-w-[390px] lg:max-w-[1130px]">
             <CustomerCategories

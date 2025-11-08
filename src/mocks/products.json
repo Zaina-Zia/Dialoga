@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1",
+    "name": "Wooden Table",
+    "description": "Beautiful handcrafted wooden table perfect for dining",
+    "price": 299.99,
+    "category": "Furniture",
+    "images": [],
+    "createdAt": "2024-01-15T10:30:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "Leather Sofa",
+    "description": "Comfortable 3-seater leather sofa in brown",
+    "price": 899.99,
+    "category": "Furniture",
+    "images": [],
+    "createdAt": "2024-01-20T14:15:00.000Z"
+  }
+]
+
