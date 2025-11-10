@@ -8,7 +8,7 @@
 - **Styling:** Tailwind CSS 4
 - **Animations:** Framer Motion 12
 - **Icons:** Lucide React
-- **State Management:** Zustand (installed, available for future use)
+- **State Management:** Zustand
 - **Build Tool:** Next.js Turbopack
 
 ## 📋 Prerequisites
