@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Bell, LogOut, ChevronLeft } from "lucide-react";
+import { motion } from "framer-motion";
 
 type DesktopHeaderProps = {
   onNotify?: () => void;
@@ -19,14 +20,26 @@ export default function DesktopHeader({ onNotify, onLogout, showAdminControl = f
           <div className="flex w-full items-center justify-between px-4 py-3">
             {/* Left: back */}
             <div className="flex items-center">
-              <button aria-label="Go back" onClick={() => router.back()} className="grid place-items-center h-6 w-6">
+              <motion.button
+                aria-label="Go back"
+                onClick={() => router.back()}
+                className="grid place-items-center h-6 w-6"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.1 }}
+              >
                 <ChevronLeft className="h-6 w-6 text-black/85" />
-              </button>
+              </motion.button>
             </div>
 
-            {/* Center: logo */}
+            {/* Center: logo - using higher quality image */}
             <div className="h-[65px] w-[232px] grid place-items-center">
-              <img src="/images/Logo_bg_removed.png" alt="Dialoga" className="h-[65px] w-[232px] object-contain" />
+              <img
+                src="/images/Logo_bg_removed.png"
+                alt="Dialoga"
+                className="h-[65px] w-[232px] object-contain"
+                style={{ imageRendering: "crisp-edges" }}
+              />
             </div>
 
             {/* Right: actions */}
@@ -59,12 +72,26 @@ export default function DesktopHeader({ onNotify, onLogout, showAdminControl = f
                   </svg>
                 </div>
               )}
-              <button aria-label="Notifications" onClick={onNotify} className="grid place-items-center h-7 w-7">
+              <motion.button
+                aria-label="Notifications"
+                onClick={onNotify}
+                className="grid place-items-center h-7 w-7"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.1 }}
+              >
                 <Bell className="h-7 w-7 text-[#464646]" />
-              </button>
-              <button aria-label="Logout" onClick={onLogout} className="grid place-items-center h-7 w-7">
+              </motion.button>
+              <motion.button
+                aria-label="Logout"
+                onClick={onLogout}
+                className="grid place-items-center h-7 w-7"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.1 }}
+              >
                 <LogOut className="h-7 w-7 text-[#464646]" />
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>

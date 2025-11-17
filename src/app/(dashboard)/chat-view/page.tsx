@@ -16,14 +16,14 @@ export default function ChatViewPage() {
   return (
     <main className="min-h-screen w-full grid place-items-center bg-[#F5F3F1]">
       <section
-        className="w-[390px] h-[841px] flex flex-col items-center pt-8 gap-[20px]"
+        className="w-full max-w-[390px] h-[841px] flex flex-col items-center pt-8 gap-[20px] px-4 sm:px-5"
         style={{ background: "#F5F3F1" }}
       >
         {/* Header */}
         <ChatViewHeader />
 
         {/* Message area */}
-        <div className="flex flex-col items-center justify-between w-[390px] h-[715px]">
+        <div className="flex flex-col items-center justify-between w-full h-[715px]">
           <div className="flex flex-col items-center gap-[16px] w-[280px] h-[134px]">
             {/* Date */}
             <div className="flex justify-center items-center w-[165px] h-[23px] bg-[#D9D9D9] shadow-[0_4px_4px_rgba(0,0,0,0.05)] rounded-[10px]">
@@ -53,7 +53,7 @@ export default function ChatViewPage() {
           )}
 
           {/* Message input bar */}
-          <div className="w-[390px] h-[40px] bg-[#464646] flex items-center px-4 gap-2">
+          <div className="w-full max-w-[390px] h-[40px] bg-[#464646] flex items-center px-4 gap-2">
             {/* Plus icon */}
             <button onClick={handleAddImage} className="h-6 w-6 grid place-items-center" aria-label="Add">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

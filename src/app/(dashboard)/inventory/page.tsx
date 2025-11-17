@@ -10,6 +10,7 @@ import { ProductList } from "../../../components/inventory/ProductList";
 import { Button } from "../../../components/ui/Button";
 import { NotificationOverlay } from "../../../components/notifications/NotificationOverlay";
 import { LogoutOverlay } from "../../../components/overlays/LogoutOverlay";
+import { RoleGuard } from "../../../components/guards/RoleGuard";
 import { Product } from "../../../types";
 import { Plus } from "lucide-react";
 
@@ -36,14 +37,15 @@ export default function InventoryPage() {
   }, []);
 
   return (
-    <main className="min-h-dvh w-full bg-[#F5F3F1]">
+    <RoleGuard>
+      <main className="min-h-dvh w-full bg-[#F5F3F1]">
       {/* Mobile layout */}
-      <section className="lg:hidden w-full max-w-[390px] min-h-dvh mx-auto flex flex-col items-center pt-8 pb-8 gap-4">
-        <div className="w-[390px]">
+      <section className="lg:hidden w-full max-w-[390px] min-h-dvh mx-auto flex flex-col items-center pt-8 pb-8 gap-4 px-4 sm:px-5">
+        <div className="w-full">
           <DashboardHeader />
         </div>
 
-        <div className="w-[390px] px-3 flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
           {/* Header */}
           <div className="w-full flex items-center justify-between">
             <h1 className="text-[21px] leading-[32px] font-semibold text-black">Inventory</h1>
@@ -61,7 +63,7 @@ export default function InventoryPage() {
           </div>
         </div>
 
-        <div className="w-[390px] mt-auto">
+        <div className="w-full mt-auto">
           <Footer onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
         </div>
 
@@ -71,7 +73,7 @@ export default function InventoryPage() {
 
       {/* Desktop layout */}
       <section className="hidden lg:flex w-full justify-center">
-        <div className="w-full max-w-[1512px] flex flex-col gap-8 py-8 px-6 lg:px-10 2xl:px-[55px]">
+        <div className="w-full max-w-[1512px] flex flex-col gap-8 py-8 px-4 sm:px-6 lg:px-10 2xl:px-[55px]">
           <DesktopHeader
             onNotify={() => setShowNotifications(true)}
             onLogout={() => setShowLogout(true)}
@@ -102,6 +104,7 @@ export default function InventoryPage() {
         </div>
       </section>
     </main>
+    </RoleGuard>
   );
 }
 

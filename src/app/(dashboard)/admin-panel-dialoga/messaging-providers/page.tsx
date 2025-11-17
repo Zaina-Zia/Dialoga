@@ -108,12 +108,12 @@ export default function MessagingProvidersPage() {
   return (
     <main className="min-h-dvh w-full bg-[#F5F3F1]">
       {/* Mobile layout */}
-      <section className="lg:hidden w-full max-w-[390px] min-h-dvh mx-auto flex flex-col items-center pt-8 pb-8 gap-4">
-        <div className="w-[390px]">
+      <section className="lg:hidden w-full max-w-[390px] min-h-dvh mx-auto flex flex-col items-center pt-8 pb-8 gap-4 px-4 sm:px-5">
+        <div className="w-full">
           <DashboardHeader />
         </div>
 
-        <div className="w-[390px] px-3 flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <h1 className="text-[21px] leading-[32px] font-semibold text-black">Messaging Providers</h1>
             {!showForm && (
@@ -225,7 +225,7 @@ export default function MessagingProvidersPage() {
           )}
         </div>
 
-        <div className="w-[390px] mt-auto">
+        <div className="w-full mt-auto">
           <Footer onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
         </div>
 

@@ -55,7 +55,7 @@ type UserBlockProps = {
 };
 
 const UserBlock: React.FC<UserBlockProps> = ({ companies, onEdit, onDelete, onStatusChange }) => (
-  <section className="w-[390px] flex flex-col items-start px-3 gap-4">
+  <section className="w-full max-w-[390px] flex flex-col items-start px-4 sm:px-5 gap-4">
     {/* Avatar + name/email row */}
     <div className="w-[366px] h-[42px] flex items-start gap-[10px]">
       <div className="w-[45px] h-[45px] rounded-full grid place-items-center" style={{ background: "rgba(9, 181, 88, 0.25)" }}>
@@ -176,9 +176,9 @@ const AdminPanelDialoga: React.FC<{ onNotify?: () => void; onLogout?: () => void
   return (
     <main className="min-h-dvh w-full bg-[#F5F3F1]">
       {/* Mobile layout */}
-      <section className="lg:hidden w-full max-w-[390px] min-h-[844px] mx-auto flex flex-col items-center pt-8 pb-8 gap-4">
-        <div className="w-[390px]"><DashboardHeader hideBack /></div>
-        <div className="w-[390px] px-3 flex flex-col gap-4">
+      <section className="lg:hidden w-full max-w-[390px] min-h-[844px] mx-auto flex flex-col items-center pt-8 pb-8 gap-4 px-4 sm:px-5">
+        <div className="w-full"><DashboardHeader hideBack /></div>
+        <div className="w-full flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <h1 className="text-[21px] leading-[32px] font-semibold text-black">Admin Panel</h1>
             {!showForm && (
@@ -226,7 +226,7 @@ const AdminPanelDialoga: React.FC<{ onNotify?: () => void; onLogout?: () => void
           )}
         </div>
         <div className="flex-1" />
-        <div className="w-[390px]"><Footer onNotify={onNotify ?? (() => {})} onLogout={onLogout ?? (() => {})} /></div>
+        <div className="w-full"><Footer onNotify={onNotify ?? (() => {})} onLogout={onLogout ?? (() => {})} /></div>
       </section>
 
       {/* Desktop layout */}

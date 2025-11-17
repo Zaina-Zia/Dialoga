@@ -7,6 +7,7 @@ import { NotificationOverlay } from "../../../components/notifications/Notificat
 import { LogoutOverlay } from "../../../components/overlays/LogoutOverlay";
 import { MessageBubble } from "../../../components/chat/MessageBubble";
 import { TypingIndicator } from "../../../components/chat/TypingIndicator";
+import { RoleGuard } from "../../../components/guards/RoleGuard";
 import { Plus, Search, Paperclip, Camera, Mic, Send } from "lucide-react";
 
 const contacts = [
@@ -106,7 +107,8 @@ export default function ChatViewPage() {
   const handleRecord = () => setAttachments((prev) => [...prev, "Nota de voz"]);
 
   return (
-    <main className="w-full bg-[#F5F3F1]">
+    <RoleGuard>
+      <main className="w-full bg-[#F5F3F1]">
       {/* Mobile layout (fixed header, only messages scroll) */}
       <section className="lg:hidden w-full h-screen max-h-screen flex flex-col overflow-hidden bg-[#F5F3F1]">
         {/* Fixed Header */}
@@ -309,5 +311,6 @@ export default function ChatViewPage() {
       <NotificationOverlay open={showNotifications} onClose={() => setShowNotifications(false)} />
       <LogoutOverlay open={showLogout} onClose={() => setShowLogout(false)} onConfirm={() => router.push("/login")} />
     </main>
+    </RoleGuard>
   );
 }

@@ -27,7 +27,7 @@ export default function VerifyEmailPage() {
       {/* Mobile artboard 390x812, space-between */}
       <section className="lg:hidden w-full max-w-[390px] min-h-dvh flex flex-col items-center bg-[#F5F3F1] pt-8 px-4 pb-[107px] gap-8">
         {/* Header 390x36 with 8/16 paddings */}
-        <header className="w-[390px] h-[36px] px-4 py-2 flex items-center">
+        <header className="w-full h-[36px] px-2 sm:px-4 py-2 flex items-center">
           <Link href="/login" aria-label="Back to Login" className="w-[20px] h-[20px] inline-flex items-center justify-center">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 18L9 12L15 6" stroke="#03121F" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"  transform="translate(-6, 0)"/>
@@ -36,9 +36,9 @@ export default function VerifyEmailPage() {
         </header>
 
         {/* Dialoga box wrapper with side paddings 12px, sits 32px under header */}
-        <div className="w-[390px] min-h-[426px] px-3 flex flex-col items-center gap-4">
+        <div className="w-full min-h-[426px] px-2 sm:px-3 flex flex-col items-center gap-4">
           {/* Inner card 366x358 with 24/24 padding and 16px gap, 8px radius, 1px border */}
-          <AuthCard className="w-[366px] min-h-[358px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] pt-6 pb-6 px-0 flex flex-col items-center gap-4">
+          <AuthCard className="w-full max-w-[366px] min-h-[358px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] pt-6 pb-6 px-4 flex flex-col items-center gap-4">
             {/* Logo */}
             <img
               src="/images/logo.jpg"
@@ -49,30 +49,30 @@ export default function VerifyEmailPage() {
             />
 
             {/* Title frame 340x32 */}
-            <div className="w-[340px] h-[32px] -mt-1">
-              <h1 className="w-[340px] h-[32px] text-[21px] leading-[21px] font-semibold text-black">Verify Your Email</h1>
+            <div className="w-full max-w-[340px] -mt-1">
+              <h1 className="w-full text-[21px] leading-[26px] font-semibold text-black text-center sm:text-left">Verify Your Email</h1>
             </div>
 
             {/* Code area wrapper 340x197 with 32 gap */}
-            <form noValidate onSubmit={handleSubmit} className="w-[340px] h-[197px] flex flex-col gap-8">
+            <form noValidate onSubmit={handleSubmit} className="w-full max-w-[340px] flex flex-col gap-8">
               {/* Instruction + boxes group 340x120 with 8 gap */}
-              <div className="w-[340px] h-[120px] flex flex-col gap-2">
-                <p className="w-[340px] h-[27px] text-[18px] leading-[18px] font-medium text-black">
+              <div className="w-full flex flex-col gap-2">
+                <p className="w-full text-[18px] leading-[22px] font-medium text-black">
                   Enter the 6-digit verification code
                 </p>
                 {/* Boxes frame 340x50 with 8 gap */}
                 <OtpInput value={code} onChange={setCode} />
                 {/* Resend link 340x23, right aligned */}
-                <div className="w-[340px] h-[23px] flex items-center justify-end">
+                <div className="w-full flex items-center justify-end">
                   <Link href="#" className="text-[15px] leading-[15px] underline text-black">Resend SMS code</Link>
                 </div>
               </div>
 
               {/* Buttons frame 340x81 with 4 gap (only one button visible here) */}
-              <div className="w-[340px] h-[81px] flex flex-col gap-1">
+              <div className="w-full flex flex-col gap-1">
                 <Button
                   type="submit"
-                  className="w-[340px] h-[45px] rounded-[8px] border border-[#03121F33] bg-[#09B558] text-[#FBF9F7] text-[18px] font-semibold leading-[18px] flex items-center justify-center"
+                  className="w-full h-[45px] rounded-[8px] border border-[#03121F33] bg-[#09B558] text-[#FBF9F7] text-[18px] font-semibold leading-[18px] flex items-center justify-center"
                   disabled={code.length !== 6}
                 >
                   Continue
@@ -83,7 +83,7 @@ export default function VerifyEmailPage() {
         </div>
 
         {/* Bottom spacer below content */}
-        <div className="h-[216px] w-[390px]" />
+        <div className="h-[216px] w-full" />
       </section>
 
       {/* Desktop layout (lg and up): header + divider + centered card per Figma */}
@@ -104,17 +104,17 @@ export default function VerifyEmailPage() {
         {/* Centered card region (Figma gap ~234px; clamp for responsiveness) */}
         <div className="w-full flex items-start justify-center mt-[clamp(32px,12vh,234px)] pb-8">
           {/* Outer card 436x400 with 32 padding */}
-          <AuthCard className="w-[436px] h-[400px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] p-8 flex items-center justify-center">
+          <AuthCard className="w-full max-w-[366px] h-[358px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] py-8 px-6 flex flex-col items-center gap-4">
             {/* Inner card 372x336 with 32/16 paddings */}
-            <AuthCard className="w-[372px] h-[336px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] pt-8 pb-8 px-4 flex flex-col items-center gap-4">
+            <AuthCard className="w-full max-w-[366px] h-[358px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] pt-8 pb-8 px-4 flex flex-col items-center gap-4">
               {/* Content width 340 */}
               <div className="w-[340px] flex flex-col items-center gap-4">
                 <img src="/images/logo.jpg" alt="Dialoga" width={214} height={57} className="w-[214px] h-[57px] object-contain" />
-                <div className="w-[340px] h-[32px]">
-                  <h1 className="w-[340px] h-[32px] text-[21px] leading-[21px] font-semibold text-black">Verify Your Email</h1>
+                <div className="w-full max-w-[340px]">
+                  <h1 className="w-full text-[21px] leading-[21px] font-semibold text-black text-center sm:text-left">Verify Your Email</h1>
                 </div>
                 {/* Instructions + OTP + CTA */}
-                <form noValidate onSubmit={handleSubmit} className="w-[340px] flex flex-col gap-4">
+                <form noValidate onSubmit={handleSubmit} className="w-[340px] flex flex-col gap-6">
                   <div className="w-[340px] flex flex-col gap-4">
                     <p className="w-[304px] h-[27px] text-[18px] leading-[27px] font-medium text-black">Enter the 6-digit verification code</p>
                     <div className="w-[340px] h-[50px] flex items-center justify-center">
@@ -123,7 +123,7 @@ export default function VerifyEmailPage() {
                   </div>
                   <Button
                     type="submit"
-                    className="w-[340px] h-[45px] rounded-[8px] border border-[#03121F]/20 bg-[#09B558] text-[#FBF9F7] text-[18px] font-semibold leading-[18px] flex items-center justify-center shadow-[0_4px_4px_rgba(0,0,0,0.05)]"
+                    className="w-full h-[45px] rounded-[8px] border border-[#03121F33] bg-[#09B558] text-[#FBF9F7] text-[18px] font-semibold leading-[18px] flex items-center justify-center shadow-[0_4px_4px_rgba(0,0,0,0.05)]"
                     disabled={code.length !== 6}
                   >
                     Continue

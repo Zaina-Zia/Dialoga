@@ -15,6 +15,7 @@ import { LogoutOverlay } from "../../../components/overlays/LogoutOverlay";
 import { PaymentMethod } from "../../../types";
 import { Plus, Edit2 } from "lucide-react";
 import { Toast } from "../../../components/ui/Toast";
+import { RoleGuard } from "../../../components/guards/RoleGuard";
 
 const getPaymentMethods = (): PaymentMethod[] => {
   if (typeof window === "undefined") return [];
@@ -129,14 +130,15 @@ export default function ProfilePage() {
     : undefined;
 
   return (
-    <main className="min-h-dvh w-full bg-[#F5F3F1]">
+    <RoleGuard>
+      <main className="min-h-dvh w-full bg-[#F5F3F1]">
       {/* Mobile layout */}
-      <section className="lg:hidden w-full max-w-[390px] min-h-dvh mx-auto flex flex-col items-center pt-8 pb-8 gap-4">
-        <div className="w-[390px]">
+      <section className="lg:hidden w-full max-w-[390px] min-h-dvh mx-auto flex flex-col items-center pt-8 pb-8 gap-4 px-4 sm:px-5">
+        <div className="w-full">
           <DashboardHeader />
         </div>
 
-        <div className="w-[390px] px-3 flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
           {/* Profile Section */}
           <div className="w-full rounded-[8px] border border-[#E4E1DD] bg-[#FDFCFB] p-3">
             <div className="flex items-center justify-between mb-4">
@@ -222,7 +224,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <div className="w-[390px] mt-auto">
+        <div className="w-full mt-auto">
           <Footer onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
         </div>
 
@@ -238,14 +240,14 @@ export default function ProfilePage() {
       {/* Desktop layout */}
       <section className="hidden lg:flex w-full flex-col">
         <div className="w-full flex justify-center">
-          <div className="w-full max-w-[1512px] flex flex-col gap-8 py-8 px-6 lg:px-10 2xl:px-[55px]">
+          <div className="w-full max-w-[1512px] flex flex-col gap-8 py-8 px-4 sm:px-6 lg:px-10 2xl:px-[55px]">
             <DesktopHeader
               onNotify={() => setShowNotifications(true)}
               onLogout={() => setShowLogout(true)}
             />
 
             <div className="w-full flex justify-center">
-              <div className="w-full max-w-[680px] flex flex-col gap-6">
+              <div className="w-full max-w-[680px] flex flex-col gap-6 px-0 sm:px-2 lg:px-0">
                 {/* Profile Section */}
                 <div className="w-full rounded-[8px] border border-[#E4E1DD] bg-[#FDFCFB] p-6">
                   <div className="flex items-center justify-between mb-6">
@@ -350,6 +352,7 @@ export default function ProfilePage() {
         onClose={() => setShowSuccessToast(false)}
       />
     </main>
+    </RoleGuard>
   );
 }
 

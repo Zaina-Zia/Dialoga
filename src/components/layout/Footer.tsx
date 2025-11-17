@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Bell, LogOut, UserCog } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export type FooterProps = {
   onNotify?: () => void;
@@ -30,28 +31,34 @@ const Footer: React.FC<FooterProps> = ({ onNotify, onLogout, showAdmin = false }
         )}
 
         {/* Notification */}
-        <button
+        <motion.button
           type="button"
           onClick={handleNotify}
           className="flex flex-col items-center gap-[2px] mx-auto"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.1 }}
         >
           <Bell className="h-[28px] w-[28px] text-neutral-700" />
           <span className="h-[15px] text-[10px] leading-[15px] font-medium text-black text-center">
             Notification
           </span>
-        </button>
+        </motion.button>
 
         {/* Logout */}
-        <button
+        <motion.button
           type="button"
           onClick={handleLogout}
           className="flex flex-col items-center gap-[2px] mx-auto"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.1 }}
         >
           <LogOut className="h-[28px] w-[28px] text-neutral-700" />
           <span className="h-[12px] text-[10px] leading-[15px] font-medium text-black text-center">
             Logout
           </span>
-        </button>
+        </motion.button>
       </div>
     </footer>
   );

@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
   const router = useRouter();
@@ -13,11 +14,14 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
           {hideBack ? (
             <div className="w-[20px] h-[20px]" />
           ) : (
-            <button
+            <motion.button
               type="button"
               aria-label="Back"
               onClick={() => router.back()}
               className="w-[20px] h-[20px] inline-flex items-center justify-center"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.1 }}
             >
               <svg
                 width="20"
@@ -34,7 +38,7 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
                   strokeLinejoin="round"
                 />
               </svg>
-            </button>
+            </motion.button>
           )}
           <img
             src="/images/Logo_bg_removed.png"
@@ -42,6 +46,7 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
             width={232}
             height={65}
             className="w-[232px] h-[65px] object-contain"
+            style={{ imageRendering: "crisp-edges" }}
           />
           <div className="w-[20px] h-[20px]" />
         </div>

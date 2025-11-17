@@ -51,19 +51,18 @@ export default function DashboardHomePage() {
       {/* Mobile layout (hidden on lg and up) */}
       <main className="lg:hidden min-h-dvh w-full grid place-items-center">
       {/* Mobile artboard 390x958 */}
-      <section className="w-full max-w-[390px] min-h-dvh flex flex-col items-center bg-[#F5F3F1] pt-8 pb-8 gap-[50px]">
-        {/* Frame 35 */}
-        <div className="w-[390px] flex flex-col gap-4">
+      <section className="w-full max-w-[390px] min-h-dvh flex flex-col items-center bg-[#F5F3F1] pt-8 pb-8 gap-[50px] px-4 sm:px-5">
+        <div className="w-full flex flex-col gap-4">
           {/* Header + divider (no back on dashboard) */}
           <DashboardHeader hideBack />
 
           {/* Content area px-3 gap-4 */}
-          <div className="w-[390px] px-3 flex flex-col items-center gap-4">
+          <div className="w-full flex flex-col items-center gap-4">
             {/* Your Tasks card */}
             <YourTasksSection tasks={tasks} />
 
             {/* Mensajes list */}
-            <div className="w-[358px] h-[327px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px]">
+            <div className="w-full max-w-[358px] h-[327px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px]">
               <div className="w-full h-full p-3 flex flex-col gap-2">
                 <Link href="/chat" className="w-[334px] h-[27px] flex items-center justify-between active:opacity-90" aria-label="Ir a Chat">
                   <div className="flex items-center gap-1">
@@ -86,7 +85,7 @@ export default function DashboardHomePage() {
             </div>
 
             {/* Customer Categories card (outer shell) */}
-            <div className="w-[358px] h-[218px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px]">
+            <div className="w-full max-w-[358px] h-[218px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px]">
               <div className="w-full h-full p-3 flex flex-col gap-[10px]">
                 <Link href="/customer-categories" className="w-[334px] h-[32px] flex items-center justify-between active:opacity-90" aria-label="Ir a Customer Categories">
                   <div className="w-[230px] h-[32px] text-[21px] leading-[32px] font-semibold text-black">Customer Categories</div>
@@ -130,7 +129,7 @@ export default function DashboardHomePage() {
             </div>
 
             {/* Inventory & Profile Links */}
-            <div className="w-[358px] flex flex-col gap-2">
+            <div className="w-full max-w-[358px] flex flex-col gap-2">
               <Link href="/inventory" className="w-full h-[61px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-3 py-2 flex items-center justify-between active:opacity-90" aria-label="Go to Inventory">
                 <div className="flex items-center gap-3">
                   <div className="w-[40px] h-[40px] bg-[#F5F3F1] rounded-[4px] flex items-center justify-center">

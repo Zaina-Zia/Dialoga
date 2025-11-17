@@ -14,14 +14,14 @@ export default function NotificationPage() {
   return (
     <main className="min-h-dvh w-full grid place-items-center bg-[#F5F3F1]">
       {/* Frame 31: artboard 390x844 with small vertical gaps */}
-      <section className="w-full max-w-[390px] min-h-[844px] flex flex-col items-center gap-[14px] py-8">
+      <section className="w-full max-w-[390px] min-h-[844px] flex flex-col items-center gap-[14px] py-8 px-4 sm:px-5">
         {/* Header */}
-        <div className="w-[390px] flex flex-col">
+        <div className="w-full flex flex-col">
           <DashboardHeader />
         </div>
 
         {/* Content block per Figma (px-12 outer, card 366x307) */}
-        <div className="w-[390px] px-3 grid place-items-center">
+        <div className="w-full px-3 grid place-items-center">
           <div className="w-[366px] min-h-[307px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] py-3">
             {/* Title row */}
             <div className="px-[12px]">
@@ -61,7 +61,7 @@ export default function NotificationPage() {
         </div>
 
         {/* Footer */}
-        <div className="w-[390px] mt-auto">
+        <div className="w-full mt-auto">
           <Footer onNotify={() => {}} onLogout={() => {}} />
         </div>
       </section>

@@ -49,17 +49,28 @@ pnpm dev
 
 ## 🔐 Authentication & User Roles
 
-### Admin Access
+### Super Admin Access
 
-**To access the Admin Panel:**
-- **Email:** `admin@example.com`
+**To access the Super Admin Panel:**
+- **Email:** `superadmin@example.com` (or `admin@example.com` for legacy support)
 - **Password:** Any non-empty password
 
-When you log in with `admin@example.com`, you'll be redirected to the Admin Panel Dashboard (`/admin-panel-page`) instead of the regular dashboard.
+When you log in with `superadmin@example.com`, you'll be redirected to the Super Admin Panel (`/admin-panel-page`). **Super Admin has access ONLY to the management section** - they cannot access chats, inventory, profile, or customer categories.
 
-### Regular Users
+### Company User Access
 
-Any other email address will grant access to the standard Company User Dashboard (`/dashboard`).
+**To access the Company Dashboard:**
+- **Email:** `company@example.com` (or any other email except superadmin/admin)
+- **Password:** Any non-empty password
+
+Company users have full access to:
+- Chat/Messages
+- Inventory management
+- Profile & Payments
+- Customer Categories
+- Dashboard features
+
+**Note:** Super Admin is completely separated from Company user features. If a Super Admin tries to access regular user pages, they will be automatically redirected to the admin panel.
 
 ### Authentication Pages
 

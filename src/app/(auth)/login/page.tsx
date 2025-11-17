@@ -8,6 +8,7 @@ import { AuthCard } from "../../../components/auth/AuthCard";
 import { AuthForm } from "../../../components/auth/AuthForm";
 import { AuthError } from "../../../components/auth/AuthError";
 import { ERROR_MESSAGES } from "../../../constants/errors";
+import { getRedirectPath } from "../../../lib/auth";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -47,7 +48,7 @@ export default function LoginPage() {
       if (typeof window !== "undefined") {
         localStorage.setItem("auth_email", email);
         localStorage.setItem("auth_password", password);
-        const redirect = email === "admin@example.com" && password.trim() ? "/admin-panel-page" : "/dashboard";
+        const redirect = getRedirectPath(email, password);
         localStorage.setItem("post_login_redirect", redirect);
       }
     } catch {}
@@ -57,39 +58,39 @@ export default function LoginPage() {
   return (
     <main className="min-h-dvh w-full">
       {/* Mobile layout (default) */}
-      <section className="lg:hidden w-full max-w-[390px] min-h-dvh bg-[#F5F3F1] rounded-none pt-[103px] pr-4 pb-[107px] pl-4 flex flex-col items-center gap-8 mx-auto">
+      <section className="lg:hidden w-full max-w-[390px] min-h-dvh bg-[#F5F3F1] rounded-none pt-[103px] pb-[107px] px-4 sm:px-6 flex flex-col items-center gap-8 mx-auto">
         {/* Inner card to control spacing */}
-        <AuthCard className="w-[364px] h-[380px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] pt-6 pb-6 px-0 flex flex-col items-center gap-4">
-          <div className="flex flex-col gap-4 items-center">
+        <AuthCard className="w-full max-w-[364px] h-[380px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] pt-6 pb-6 px-4 flex flex-col items-center gap-4">
+          <div className="flex flex-col gap-4 items-center w-full">
             {/* Brand logo (fixed 214x56) */}
             <img src="/images/logo.jpg" alt="Dialoga" width={214} height={56} className="w-[214px] h-[56px] object-contain" />
 
             {/* Form with constrained widths */}
             <AuthForm noValidate onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-4">
               {/* Frame 11: Email + Password + Forgot (px-12, gap 31) */}
-              <div className="w-full flex flex-col items-center px-3 gap-4">
+              <div className="w-full flex flex-col items-center gap-4">
                 {/* Email group (332x72, px 1) */}
-                <div className="w-[332px] h-[72px] flex flex-col gap-1 items-start px-[1px]">
-                  <label htmlFor="email" className="w-[330px] h-[27px] text-[18px] leading-[27px] font-medium text-black">Email</label>
-                  <Input id="email" name="email" type="email" className="w-[330px] h-[45px] rounded-[8px] border border-[#03121F]/20 bg-[#FDFCFB] px-3 text-[16px] text-[#03121F] shadow-[0_4px_4px_rgba(0,0,0,0.05)] outline-none focus:border-[#03121F]/40 focus:ring-2 focus:ring-[#03121F]/10" />
+                <div className="w-full max-w-[332px] flex flex-col gap-1 items-start">
+                  <label htmlFor="email" className="w-full text-[18px] leading-[27px] font-medium text-black">Email</label>
+                  <Input id="email" name="email" type="email" className="w-full h-[45px] rounded-[8px] border border-[#03121F]/20 bg-[#FDFCFB] px-3 text-[16px] text-[#03121F] shadow-[0_4px_4px_rgba(0,0,0,0.05)] outline-none focus:border-[#03121F]/40 focus:ring-2 focus:ring-[#03121F]/10" />
                   {emailError && <AuthError message={emailError} />} 
                 </div>
 
                 {/* Password group (332x72, pl 1) */}
-                <div className="w-[332px] h-[72px] flex flex-col gap-1 items-start pl-[1px]">
-                  <label htmlFor="password" className="w-[331px] h-[27px] text-[18px] leading-[27px] font-medium text-black">Contraseña</label>
-                  <Input id="password" name="password" type="password" className="w-[331px] h-[45px] rounded-[8px] border border-[#03121F]/20 bg-[#FDFCFB] px-3 text-[16px] text-[#03121F] shadow-[0_4px_4px_rgba(0,0,0,0.05)] outline-none focus:border-[#03121F]/40 focus:ring-2 focus:ring-[#03121F]/10" />
+                <div className="w-full max-w-[332px] flex flex-col gap-1 items-start">
+                  <label htmlFor="password" className="w-full text-[18px] leading-[27px] font-medium text-black">Contraseña</label>
+                  <Input id="password" name="password" type="password" className="w-full h-[45px] rounded-[8px] border border-[#03121F]/20 bg-[#FDFCFB] px-3 text-[16px] text-[#03121F] shadow-[0_4px_4px_rgba(0,0,0,0.05)] outline-none focus:border-[#03121F]/40 focus:ring-2 focus:ring-[#03121F]/10" />
                   {passwordError && <AuthError message={passwordError} />}
                 </div>
 
                 {/* Forgot link (w 332 x h 23, 15/22) */}
-                <Link href="/forgot-password" className="block w-[332px] h-[23px] text-right text-[15px] leading-[22px] font-normal text-black underline">Forgot your password?</Link>
+                <Link href="/forgot-password" className="block w-full max-w-[332px] text-right text-[15px] leading-[22px] font-normal text-black underline">Forgot your password?</Link>
               </div>
 
               {/* CTA Frame: 340x45 with px 57 and drop-shadow */}
-              <div className="w-full flex flex-col items-start px-3 gap-[10px] mt-[10px]">
-                <div className="w-[340px] h-[45px]" style={{ filter: "drop-shadow(0px 4px 4px rgba(0,0,0,0.05))" }}>
-                  <Button type="submit" className="w-[340px] h-[45px] rounded-[8px] border border-[#03121F]/20 bg-[#09B558] text-[#FBF9F7] text-[18px] font-semibold leading-[27px] flex items-center justify-center px-[57px]">Log In</Button>
+              <div className="w-full flex flex-col items-center gap-[10px] mt-[10px]">
+                <div className="w-full max-w-[340px] h-[45px]" style={{ filter: "drop-shadow(0px 4px 4px rgba(0,0,0,0.05))" }}>
+                  <Button type="submit" className="w-full h-[45px] rounded-[8px] border border-[#03121F]/20 bg-[#09B558] text-[#FBF9F7] text-[18px] font-semibold leading-[27px] flex items-center justify-center px-[40px]">Log In</Button>
                 </div>
               </div>
             </AuthForm>
@@ -108,23 +109,23 @@ export default function LoginPage() {
 
         {/* Right column: 404x469 outer with 32/16 padding; inner 372x405 with 32/16 padding */}
         <div className="flex items-center justify-center h-full bg-[#FBF9F7]">
-          <AuthCard className="w-[404px] h-[469.2857px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] p-8 flex items-start justify-center">
-            <AuthCard className="w-[372px] h-[405.2857px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] pt-8 pb-8 px-4 flex flex-col items-center gap-4">
+          <AuthCard className="w-full max-w-[404px] h-[469.2857px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] p-8 flex items-start justify-center">
+            <AuthCard className="w-full max-w-[372px] h-[405.2857px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] pt-8 pb-8 px-4 flex flex-col items-center gap-4">
               {/* Content width 340 */}
-              <div className="w-[340px] h-[341.2857px] flex flex-col items-center gap-3">
+              <div className="w-full max-w-[340px] h-[341.2857px] flex flex-col items-center gap-3">
                 <img src="/images/logo.jpg" alt="Dialoga" width={214} height={57} className="w-[214px] h-[57px] object-contain" />
                 {/* Form area with slightly tighter row-gap */}
-                <form noValidate onSubmit={handleSubmit} className="w-[340px] flex flex-col gap-[18px]">
-                  <div className="w-[340px] flex flex-col gap-[14px]">
+                <form noValidate onSubmit={handleSubmit} className="w-full max-w-[340px] flex flex-col gap-[18px]">
+                  <div className="w-full flex flex-col gap-[14px]">
                     <label htmlFor="d-email" className="w-[241.66px] h-[28.29px] text-[18px] leading-[27px] font-medium text-black">Email</label>
-                    <Input id="d-email" name="d-email" type="email" className="w-[340px] h-[45px] rounded-[8px] border border-[#03121F33] bg-[#FDFCFB] px-3 text-[16px] text-[#03121F] shadow-[0_4px_4px_rgba(0,0,0,0.05)]" />
+                    <Input id="d-email" name="d-email" type="email" className="w-full h-[45px] rounded-[8px] border border-[#03121F33] bg-[#FDFCFB] px-3 text-[16px] text-[#03121F] shadow-[0_4px_4px_rgba(0,0,0,0.05)]" />
                   </div>
-                  <div className="w-[340px] flex flex-col gap-[14px]">
+                  <div className="w-full flex flex-col gap-[14px]">
                     <label htmlFor="d-password" className="w-[301.9px] h-[28px] text-[18px] leading-[27px] font-medium text-black">Contraseña</label>
-                    <Input id="d-password" name="d-password" type="password" className="w-[340px] h-[45px] rounded-[8px] border border-[#03121F33] bg-[#FDFCFB] px-3 text-[16px] text-[#03121F] shadow-[0_4px_4px_rgba(0,0,0,0.05)]" />
+                    <Input id="d-password" name="d-password" type="password" className="w-full h-[45px] rounded-[8px] border border-[#03121F33] bg-[#FDFCFB] px-3 text-[16px] text-[#03121F] shadow-[0_4px_4px_rgba(0,0,0,0.05)]" />
                   </div>
-                  <Link href="/forgot-password" className="block w-[340px] h-[18px] text-right text-[15px] leading-[22px] font-normal text-black underline">Forgot your password?</Link>
-                  <Button type="submit" className="w-[340px] h-[45px] rounded-[8px] border border-[#03121F33] bg-[#09B558] text-[#FBF9F7] text-[18px] font-semibold leading-[27px] flex items-center justify-center">Log In</Button>
+                  <Link href="/forgot-password" className="block w-full text-right text-[15px] leading-[22px] font-normal text-black underline">Forgot your password?</Link>
+                  <Button type="submit" className="w-full h-[45px] rounded-[8px] border border-[#03121F33] bg-[#09B558] text-[#FBF9F7] text-[18px] font-semibold leading-[27px] flex items-center justify-center">Log In</Button>
                 </form>
               </div>
             </AuthCard>

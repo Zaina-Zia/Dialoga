@@ -9,7 +9,7 @@ const ChatViewFooter: React.FC<{
   onSend?: () => void;
 }> = ({ onPlus, onAttach, onSend }) => {
   return (
-    <div className="w-[390px] h-[40px] bg-[#464646] px-4 py-2 flex items-center gap-2">
+    <div className="w-full max-w-[390px] h-[40px] bg-[#464646] px-4 py-2 flex items-center gap-2">
       {/* Plus icon */}
       <button type="button" aria-label="Add" onClick={onPlus} className="h-6 w-6 grid place-items-center">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

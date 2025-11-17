@@ -37,7 +37,7 @@ export default function OldClosedCustomersPage() {
 
   return (
     <main className="min-h-dvh w-full bg-[#F5F3F1]">
-      <section className="mx-auto w-full max-w-[390px] lg:max-w-[1512px] min-h-[844px] flex flex-col gap-8 lg:gap-10 py-8 lg:px-10">
+      <section className="mx-auto w-full max-w-[390px] lg:max-w-[1512px] min-h-[844px] flex flex-col gap-8 lg:gap-10 py-8 px-4 sm:px-5 lg:px-10">
         {/* Headers: mobile vs desktop */}
         <div className="lg:hidden w-full grid place-items-center">
           <div className="w-[390px] flex flex-col">
@@ -104,7 +104,7 @@ export default function OldClosedCustomersPage() {
         <LogoutOverlay open={showLogout} onClose={() => setShowLogout(false)} onConfirm={() => router.push('/login')} />
 
         {/* Footers: mobile vs desktop */}
-        <div className="lg:hidden w-[390px] mt-auto mx-auto">
+        <div className="lg:hidden w-full mt-auto mx-auto">
           <Footer onNotify={() => setShowNotifications(true)} onLogout={() => setShowLogout(true)} />
         </div>
         <div className="hidden lg:block">
