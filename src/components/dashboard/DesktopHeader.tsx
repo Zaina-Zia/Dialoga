@@ -8,10 +8,11 @@ type DesktopHeaderProps = {
   onNotify?: () => void;
   onLogout?: () => void;
   showAdminControl?: boolean;
+  onBack?: () => void;
 };
 
 // DesktopHeader: zoom-stable, centered logo with left/right controls and full-bleed divider
-export default function DesktopHeader({ onNotify, onLogout, showAdminControl = false }: DesktopHeaderProps) {
+export default function DesktopHeader({ onNotify, onLogout, showAdminControl = false, onBack }: DesktopHeaderProps) {
   const router = useRouter();
   return (
     <header className="hidden lg:flex w-full flex-col items-center">
@@ -22,7 +23,7 @@ export default function DesktopHeader({ onNotify, onLogout, showAdminControl = f
             <div className="flex items-center">
               <motion.button
                 aria-label="Go back"
-                onClick={() => router.back()}
+                onClick={() => (onBack ? onBack() : router.back())}
                 className="grid place-items-center h-6 w-6"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}

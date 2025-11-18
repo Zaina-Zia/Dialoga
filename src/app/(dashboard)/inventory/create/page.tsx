@@ -53,7 +53,7 @@ export default function CreateProductPage() {
       {/* Mobile layout */}
       <section className="lg:hidden w-full max-w-[390px] min-h-dvh mx-auto flex flex-col items-center pt-8 pb-8 gap-4 px-4 sm:px-5">
         <div className="w-full">
-          <DashboardHeader />
+          <DashboardHeader onBack={() => router.push("/inventory")} />
         </div>
 
         <div className="w-full flex flex-col gap-4">
@@ -77,6 +77,7 @@ export default function CreateProductPage() {
           <DesktopHeader
             onNotify={() => setShowNotifications(true)}
             onLogout={() => setShowLogout(true)}
+            onBack={() => router.push("/inventory")}
           />
 
           <div className="w-full flex justify-center">

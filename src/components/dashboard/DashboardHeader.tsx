@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
-export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
+export function DashboardHeader({ hideBack = false, onBack }: { hideBack?: boolean; onBack?: () => void }) {
   const router = useRouter();
   return (
     <header className="w-full flex flex-col items-center">
@@ -15,7 +15,7 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
             <motion.button
               type="button"
               aria-label="Back"
-              onClick={() => router.back()}
+              onClick={() => (onBack ? onBack() : router.back())}
               className="w-[20px] h-[20px] inline-flex items-center justify-center absolute left-4"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
