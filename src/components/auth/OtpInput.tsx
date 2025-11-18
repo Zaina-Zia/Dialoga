@@ -77,7 +77,7 @@ export function OtpInput({ length = 6, value, onChange, className = "" }: OtpInp
   };
 
   return (
-    <div className={`w-[340px] h-[50px] flex items-center justify-between gap-2 ${className}`}>
+    <div className={`w-full max-w-[340px] h-[50px] flex items-center justify-between gap-2 ${className}`}>
       {values.map((ch, idx) => (
         <input
           key={idx}
@@ -91,7 +91,7 @@ export function OtpInput({ length = 6, value, onChange, className = "" }: OtpInp
           onChange={(e) => handleChange(e, idx)}
           onKeyDown={(e) => handleKeyDown(e, idx)}
           onPaste={(e) => handlePaste(e, idx)}
-          className="w-[50px] h-[50px] rounded-[8px] border border-[#03121F33] bg-[#FDFCFB] shadow-[0_4px_4px_rgba(0,0,0,0.05)] text-center text-[18px] font-medium text-[#03121F] outline-none focus:border-[#03121F]/40 focus:ring-2 focus:ring-[#03121F]/10"
+          className="flex-1 min-w-0 h-[50px] rounded-[8px] border border-[#03121F33] bg-[#FDFCFB] shadow-[0_4px_4px_rgba(0,0,0,0.05)] text-center text-[18px] font-medium text-[#03121F] outline-none focus:border-[#03121F]/40 focus:ring-2 focus:ring-[#03121F]/10"
         />
       ))}
     </div>

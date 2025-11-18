@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { DashboardHeader } from "../../../components/dashboard/DashboardHeader";
 import DesktopHeader from "../../../components/dashboard/DesktopHeader";
 import { useRouter } from "next/navigation";

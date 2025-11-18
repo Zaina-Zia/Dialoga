@@ -11,6 +11,7 @@ import { StatusToggle } from "./StatusToggle";
 import { Button } from "../ui/Button";
 import { Company } from "../../types";
 import { Plus, Edit2, Trash2 } from "lucide-react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 // Pixel-perfect Admin Panel - Dialoga Side (390x844)
@@ -59,7 +60,7 @@ const UserBlock: React.FC<UserBlockProps> = ({ companies, onEdit, onDelete, onSt
     {/* Avatar + name/email row */}
     <div className="w-[366px] h-[42px] flex items-start gap-[10px]">
       <div className="w-[45px] h-[45px] rounded-full grid place-items-center" style={{ background: "rgba(9, 181, 88, 0.25)" }}>
-        <img src="/images/Dashboard_Home/accountCircle.png" alt="avatar" className="w-[29px] h-[29px] object-contain" />
+        <img src="/images/Dashboard_Home/accountCircle.svg" alt="avatar" className="w-[29px] h-[29px] object-contain" />
       </div>
       <div className="w-[256px] h-[42px] flex flex-col items-start">
         <div className="w-[249px] h-[24px] text-[21px] leading-[32px] font-semibold text-black">Name of User</div>
@@ -89,22 +90,50 @@ const UserBlock: React.FC<UserBlockProps> = ({ companies, onEdit, onDelete, onSt
           <div className="w-[50px] text-[8px] leading-[12px] text-black text-center truncate">{r.phone}</div>
           <div className="w-[50px] text-[8px] leading-[12px] text-black text-center truncate">{r.token}</div>
           <div className="w-[46px] flex items-center justify-center gap-1">
-            <button
+            <motion.button
               type="button"
               onClick={() => onEdit(r.id)}
-              className="p-1 hover:bg-[#F5F3F1] rounded transition"
+              className="p-1 rounded transition-colors"
               aria-label="Edit"
+              whileHover={{ 
+                scale: 1.15,
+                backgroundColor: "rgba(0, 0, 0, 0.05)"
+              }}
+              whileTap={{ 
+                scale: 0.9,
+                backgroundColor: "rgba(0, 0, 0, 0.1)"
+              }}
+              transition={{ 
+                type: "spring",
+                stiffness: 400,
+                damping: 17,
+                duration: 0.15
+              }}
             >
               <Edit2 className="w-3 h-3 text-[#464646]" />
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               type="button"
               onClick={() => onDelete(r.id)}
-              className="p-1 hover:bg-[#F5F3F1] rounded transition"
+              className="p-1 rounded transition-colors"
               aria-label="Delete"
+              whileHover={{ 
+                scale: 1.15,
+                backgroundColor: "rgba(220, 38, 38, 0.1)"
+              }}
+              whileTap={{ 
+                scale: 0.9,
+                backgroundColor: "rgba(220, 38, 38, 0.2)"
+              }}
+              transition={{ 
+                type: "spring",
+                stiffness: 400,
+                damping: 17,
+                duration: 0.15
+              }}
             >
               <Trash2 className="w-3 h-3 text-[#464646]" />
-            </button>
+            </motion.button>
           </div>
         </div>
       ))}

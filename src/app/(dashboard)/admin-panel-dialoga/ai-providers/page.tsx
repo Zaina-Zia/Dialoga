@@ -10,6 +10,7 @@ import { Button } from "../../../../components/ui/Button";
 import { NotificationOverlay } from "../../../../components/notifications/NotificationOverlay";
 import { LogoutOverlay } from "../../../../components/overlays/LogoutOverlay";
 import { Edit2, Trash2, Plus } from "lucide-react";
+import { motion } from "framer-motion";
 
 type AIProvider = {
   id: string;
@@ -339,14 +340,53 @@ export default function AIProvidersPage() {
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <button type="button" onClick={() => handleEdit(provider.id)} className="flex-1 h-9 bg-[#FDFCFB] border border-[#E4E1DD] rounded-[4px] flex items-center justify-center gap-2 hover:bg-[#F5F3F1] transition" aria-label="Edit">
+                          <motion.button 
+                            type="button" 
+                            onClick={() => handleEdit(provider.id)} 
+                            className="flex-1 h-9 bg-[#FDFCFB] border border-[#E4E1DD] rounded-[4px] flex items-center justify-center gap-2" 
+                            aria-label="Edit"
+                            whileHover={{ 
+                              scale: 1.02,
+                              backgroundColor: "#F5F3F1",
+                              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
+                            }}
+                            whileTap={{ 
+                              scale: 0.98
+                            }}
+                            transition={{ 
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 17,
+                              duration: 0.15
+                            }}
+                          >
                             <Edit2 className="w-4 h-4 text-[#464646]" />
                             <span className="text-[14px] text-[#464646]">Edit</span>
-                          </button>
-                          <button type="button" onClick={() => handleDelete(provider.id)} className="flex-1 h-9 bg-[#FDFCFB] border border-[#E4E1DD] rounded-[4px] flex items-center justify-center gap-2 hover:bg-[#F5F3F1] transition" aria-label="Delete">
+                          </motion.button>
+                          <motion.button 
+                            type="button" 
+                            onClick={() => handleDelete(provider.id)} 
+                            className="flex-1 h-9 bg-[#FDFCFB] border border-[#E4E1DD] rounded-[4px] flex items-center justify-center gap-2" 
+                            aria-label="Delete"
+                            whileHover={{ 
+                              scale: 1.02,
+                              backgroundColor: "rgba(220, 38, 38, 0.1)",
+                              borderColor: "rgba(220, 38, 38, 0.3)",
+                              boxShadow: "0 2px 4px rgba(220, 38, 38, 0.2)"
+                            }}
+                            whileTap={{ 
+                              scale: 0.98
+                            }}
+                            transition={{ 
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 17,
+                              duration: 0.15
+                            }}
+                          >
                             <Trash2 className="w-4 h-4 text-[#464646]" />
                             <span className="text-[14px] text-[#464646]">Delete</span>
-                          </button>
+                          </motion.button>
                         </div>
                       </div>
                     ))}

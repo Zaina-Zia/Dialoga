@@ -41,7 +41,7 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
             </motion.button>
           )}
           <img
-            src="/images/Logo_bg_removed.png"
+            src="/images/Logo_bg_removed.svg"
             alt="Dialoga"
             width={232}
             height={65}

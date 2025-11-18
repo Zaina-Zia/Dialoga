@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { CreditCard, Edit, Trash2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { PaymentMethod } from "../../types";
 
 type PaymentMethodCardProps = {
@@ -24,7 +25,19 @@ export function PaymentMethodCard({ paymentMethod, onEdit, onDelete }: PaymentMe
   };
 
   return (
-    <div className="w-full bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] p-3">
+    <motion.div 
+      className="w-full bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] p-3"
+      whileHover={{ 
+        scale: 1.01,
+        boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)"
+      }}
+      transition={{ 
+        type: "spring",
+        stiffness: 400,
+        damping: 17,
+        duration: 0.15
+      }}
+    >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-[40px] h-[40px] bg-[#F5F3F1] rounded-[4px] flex items-center justify-center text-[20px]">
@@ -40,25 +53,53 @@ export function PaymentMethodCard({ paymentMethod, onEdit, onDelete }: PaymentMe
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button
+          <motion.button
             type="button"
             onClick={onEdit}
-            className="p-2 hover:bg-[#F5F3F1] rounded-[4px] transition"
+            className="p-2 rounded-[4px] transition-colors"
+            whileHover={{ 
+              scale: 1.1,
+              backgroundColor: "rgba(0, 0, 0, 0.05)"
+            }}
+            whileTap={{ 
+              scale: 0.95,
+              backgroundColor: "rgba(0, 0, 0, 0.1)"
+            }}
+            transition={{ 
+              type: "spring",
+              stiffness: 400,
+              damping: 17,
+              duration: 0.15
+            }}
             aria-label="Edit"
           >
             <Edit className="w-4 h-4 text-[#464646]" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             onClick={onDelete}
-            className="p-2 hover:bg-[#F5F3F1] rounded-[4px] transition"
+            className="p-2 rounded-[4px] transition-colors"
+            whileHover={{ 
+              scale: 1.1,
+              backgroundColor: "rgba(220, 38, 38, 0.1)"
+            }}
+            whileTap={{ 
+              scale: 0.95,
+              backgroundColor: "rgba(220, 38, 38, 0.2)"
+            }}
+            transition={{ 
+              type: "spring",
+              stiffness: 400,
+              damping: 17,
+              duration: 0.15
+            }}
             aria-label="Delete"
           >
             <Trash2 className="w-4 h-4 text-[#464646]" />
-          </button>
+          </motion.button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

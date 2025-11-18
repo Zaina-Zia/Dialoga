@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   iconSrc: string;
@@ -30,8 +31,24 @@ export function CategoryCard({
   className,
 }: Props) {
   return (
-    <div className={"relative w-[110px] h-[70px]" + (className ? ` ${className}` : "")}> 
-      <div className="absolute inset-0 bg-[#FDFCFB] border border-[#03121F]/20 rounded-[8px]" />
+    <motion.div 
+      className={"relative w-[110px] h-[70px]" + (className ? ` ${className}` : "")}
+      whileHover={{ 
+        scale: 1.05,
+        y: -2
+      }}
+      whileTap={{ 
+        scale: 0.98,
+        y: 0
+      }}
+      transition={{ 
+        type: "spring",
+        stiffness: 400,
+        damping: 17,
+        duration: 0.15
+      }}
+    > 
+      <div className="absolute inset-0 bg-[#FDFCFB] border border-[#03121F]/20 rounded-[8px] transition-colors hover:bg-[#F5F3F1] hover:border-[#03121F]/30" />
       <div
         className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center"
         style={{ width: innerW, height: innerH, gap }}
@@ -42,6 +59,6 @@ export function CategoryCard({
           {label}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

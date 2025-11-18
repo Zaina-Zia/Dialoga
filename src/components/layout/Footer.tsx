@@ -34,12 +34,28 @@ const Footer: React.FC<FooterProps> = ({ onNotify, onLogout, showAdmin = false }
         <motion.button
           type="button"
           onClick={handleNotify}
-          className="flex flex-col items-center gap-[2px] mx-auto"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.1 }}
+          className="flex flex-col items-center gap-[2px] mx-auto px-2 py-1 rounded-md transition-colors"
+          whileHover={{ 
+            scale: 1.1,
+            backgroundColor: "rgba(0, 0, 0, 0.05)"
+          }}
+          whileTap={{ 
+            scale: 0.95,
+            backgroundColor: "rgba(0, 0, 0, 0.1)"
+          }}
+          transition={{ 
+            type: "spring",
+            stiffness: 400,
+            damping: 17,
+            duration: 0.15
+          }}
         >
-          <Bell className="h-[28px] w-[28px] text-neutral-700" />
+          <motion.div
+            whileHover={{ rotate: [0, -10, 10, -5, 0] }}
+            transition={{ duration: 0.5 }}
+          >
+            <Bell className="h-[28px] w-[28px] text-neutral-700" />
+          </motion.div>
           <span className="h-[15px] text-[10px] leading-[15px] font-medium text-black text-center">
             Notification
           </span>
@@ -49,12 +65,28 @@ const Footer: React.FC<FooterProps> = ({ onNotify, onLogout, showAdmin = false }
         <motion.button
           type="button"
           onClick={handleLogout}
-          className="flex flex-col items-center gap-[2px] mx-auto"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.1 }}
+          className="flex flex-col items-center gap-[2px] mx-auto px-2 py-1 rounded-md transition-colors"
+          whileHover={{ 
+            scale: 1.1,
+            backgroundColor: "rgba(0, 0, 0, 0.05)"
+          }}
+          whileTap={{ 
+            scale: 0.95,
+            backgroundColor: "rgba(0, 0, 0, 0.1)"
+          }}
+          transition={{ 
+            type: "spring",
+            stiffness: 400,
+            damping: 17,
+            duration: 0.15
+          }}
         >
-          <LogOut className="h-[28px] w-[28px] text-neutral-700" />
+          <motion.div
+            whileHover={{ rotate: [0, 10, -10, 5, 0] }}
+            transition={{ duration: 0.5 }}
+          >
+            <LogOut className="h-[28px] w-[28px] text-neutral-700" />
+          </motion.div>
           <span className="h-[12px] text-[10px] leading-[15px] font-medium text-black text-center">
             Logout
           </span>

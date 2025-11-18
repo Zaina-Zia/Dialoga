@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import DesktopHeader from "../../components/dashboard/DesktopHeader";
 import { NotificationOverlay } from "../../components/notifications/NotificationOverlay";
 import { LogoutOverlay } from "../../components/overlays/LogoutOverlay";
@@ -9,7 +10,7 @@ const tasks = [
   {
     label: "Mensajes",
     count: 7,
-    iconSrc: "/images/Dashboard_Home/mensajes.png",
+    iconSrc: "/images/Dashboard_Home/mensajes.svg",
     iconAlt: "Mensajes",
     desktop: { labelWidth: 58, labelFontSize: 12, labelLineHeight: 18, iconTextGap: 2, textGap: 1 },
     href: "/chat",
@@ -17,7 +18,7 @@ const tasks = [
   {
     label: "Envío",
     count: 7,
-    iconSrc: "/images/Dashboard_Home/envio.png",
+    iconSrc: "/images/Dashboard_Home/envio.svg",
     iconAlt: "Envío",
     desktop: { labelWidth: 32, labelFontSize: 12, labelLineHeight: 18, iconTextGap: 2, textGap: 1 },
     href: "/inventory",
@@ -25,7 +26,7 @@ const tasks = [
   {
     label: "Visitas a la tienda",
     count: 7,
-    iconSrc: "/images/Dashboard_Home/visitas.png",
+    iconSrc: "/images/Dashboard_Home/visitas.svg",
     iconAlt: "Visitas",
     desktop: { labelWidth: 93, labelFontSize: 10, labelLineHeight: 15, iconTextGap: 6, textGap: 3 },
     href: "/customer-categories",
@@ -33,12 +34,12 @@ const tasks = [
 ];
 
 const categories = [
-  { label: "Interesado", iconSrc: "/images/Dashboard_Home/CustomerCategories/interesado.png", innerW: 66, innerH: 44, textW: 66, textH: 18, gap: 2, labelFontSize: 12, labelLineHeight: 18 },
-  { label: "Visitas a la tienda", iconSrc: "/images/Dashboard_Home/visitas.png", innerW: 90, innerH: 45, textW: 90, textH: 15, gap: 6, labelFontSize: 10, labelLineHeight: 15 },
-  { label: "Envío", iconSrc: "/images/Dashboard_Home/envio.png", innerW: 38, innerH: 44, textW: 38, textH: 18, gap: 2, labelFontSize: 12, labelLineHeight: 18 },
-  { label: "Solo Pide Info", iconSrc: "/images/Dashboard_Home/CustomerCategories/soloPriceinfo.png", innerW: 81, innerH: 44, textW: 81, textH: 18, gap: 1, labelFontSize: 12, labelLineHeight: 18 },
-  { label: "No Interesado", iconSrc: "/images/Dashboard_Home/CustomerCategories/noIntersado.png", innerW: 85, innerH: 48, textW: 85, textH: 18, gap: 3, labelFontSize: 12, labelLineHeight: 18 },
-  { label: "Closed", iconSrc: "/images/Dashboard_Home/CustomerCategories/closed.png", innerW: 38, innerH: 44, textW: 38, textH: 18, gap: 1, labelFontSize: 12, labelLineHeight: 18 },
+  { label: "Interesado", iconSrc: "/images/Dashboard_Home/CustomerCategories/interesado.svg", innerW: 66, innerH: 44, textW: 66, textH: 18, gap: 2, labelFontSize: 12, labelLineHeight: 18 },
+  { label: "Visitas a la tienda", iconSrc: "/images/Dashboard_Home/visitas.svg", innerW: 90, innerH: 45, textW: 90, textH: 15, gap: 6, labelFontSize: 10, labelLineHeight: 15 },
+  { label: "Envío", iconSrc: "/images/Dashboard_Home/envio.svg", innerW: 38, innerH: 44, textW: 38, textH: 18, gap: 2, labelFontSize: 12, labelLineHeight: 18 },
+  { label: "Solo Pide Info", iconSrc: "/images/Dashboard_Home/CustomerCategories/soloPriceinfo.svg", innerW: 81, innerH: 44, textW: 81, textH: 18, gap: 1, labelFontSize: 12, labelLineHeight: 18 },
+  { label: "No Interesado", iconSrc: "/images/Dashboard_Home/CustomerCategories/noIntersado.svg", innerW: 85, innerH: 48, textW: 85, textH: 18, gap: 3, labelFontSize: 12, labelLineHeight: 18 },
+  { label: "Closed", iconSrc: "/images/Dashboard_Home/CustomerCategories/closed.svg", innerW: 38, innerH: 44, textW: 38, textH: 18, gap: 1, labelFontSize: 12, labelLineHeight: 18 },
 ];
 
 const messages = [
@@ -65,7 +66,26 @@ export default function DashboardDesktop() {
                 <div className="grid w-full gap-3 lg:grid-cols-3 sm:grid-cols-2" style={{ filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.05))" }}>
                   {tasks.map((task, idx) => {
                     const cardContent = (
-                      <div key={idx} className="flex h-[70px] w-full flex-col items-center justify-center rounded-[8px] border border-[#03121F]/20 bg-[#FDFCFB] shadow-[0_4px_4px_rgba(0,0,0,0.05)] hover:bg-[#F5F3F1] transition cursor-pointer">
+                      <motion.div 
+                        key={idx} 
+                        className="flex h-[70px] w-full flex-col items-center justify-center rounded-[8px] border border-[#03121F]/20 bg-[#FDFCFB] shadow-[0_4px_4px_rgba(0,0,0,0.05)] cursor-pointer"
+                        whileHover={{ 
+                          scale: 1.05,
+                          y: -2,
+                          backgroundColor: "#F5F3F1",
+                          borderColor: "rgba(3, 18, 31, 0.3)"
+                        }}
+                        whileTap={{ 
+                          scale: 0.98,
+                          y: 0
+                        }}
+                        transition={{ 
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 17,
+                          duration: 0.15
+                        }}
+                      >
                       <div className="flex flex-col items-center" style={{ gap: `${task.desktop?.iconTextGap ?? 2}px` }}>
                         <img src={task.iconSrc} alt={task.iconAlt} className="h-[24px] w-[24px] object-contain" />
                         <div className="flex flex-col items-center" style={{ gap: `${task.desktop?.textGap ?? 1}px` }}>
@@ -80,7 +100,7 @@ export default function DashboardDesktop() {
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                     );
                     return task.href ? (
                       <Link key={idx} href={task.href}>
@@ -106,14 +126,34 @@ export default function DashboardDesktop() {
                 </Link>
                 <div className="grid w-full gap-3 sm:grid-cols-2">
                   {messages.map((m, i) => (
-                    <Link key={i} href="/chat" className="flex h-[61px] w-full items-center gap-4 rounded-[8px] border border-[rgba(70,70,70,0.25)] bg-[#FDFCFB] px-[6px] py-2 shadow-[0_4px_4px_rgba(0,0,0,0.05)] hover:bg-[#F5F3F1] transition">
-                      <div className="grid h-[45px] w-[45px] place-items-center rounded-full" style={{ background: "rgba(9, 181, 88, 0.25)" }}>
-                        <img src="/images/Dashboard_Home/accountCircle.png" alt="avatar" className="h-[29px] w-[29px] object-contain" />
-                      </div>
-                      <div className="flex flex-col gap-[4px]">
-                        <span className="text-[15px] leading-[22px] font-medium text-black">{m.name}</span>
-                        <span className="text-[12px] leading-[18px] text-black">{m.product}</span>
-                      </div>
+                    <Link key={i} href="/chat" className="block">
+                      <motion.div
+                        className="flex h-[61px] w-full items-center gap-4 rounded-[8px] border border-[rgba(70,70,70,0.25)] bg-[#FDFCFB] px-[6px] py-2 shadow-[0_4px_4px_rgba(0,0,0,0.05)]"
+                        whileHover={{ 
+                          scale: 1.02,
+                          y: -2,
+                          backgroundColor: "#F5F3F1",
+                          boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)"
+                        }}
+                        whileTap={{ 
+                          scale: 0.98,
+                          y: 0
+                        }}
+                        transition={{ 
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 17,
+                          duration: 0.15
+                        }}
+                      >
+                        <div className="grid h-[45px] w-[45px] place-items-center rounded-full" style={{ background: "rgba(9, 181, 88, 0.25)" }}>
+                          <img src="/images/Dashboard_Home/accountCircle.svg" alt="avatar" className="h-[29px] w-[29px] object-contain" />
+                        </div>
+                        <div className="flex flex-col gap-[4px]">
+                          <span className="text-[15px] leading-[22px] font-medium text-black">{m.name}</span>
+                          <span className="text-[12px] leading-[18px] text-black">{m.product}</span>
+                        </div>
+                      </motion.div>
                     </Link>
                   ))}
                 </div>

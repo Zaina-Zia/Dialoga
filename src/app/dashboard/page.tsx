@@ -2,6 +2,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { DashboardHeader } from "../../components/dashboard/DashboardHeader";
 import { TaskStatCard } from "../../components/dashboard/TaskStatCard";
 import { MessageItem } from "../../components/dashboard/MessageItem";
@@ -20,20 +21,20 @@ export default function DashboardHomePage() {
     router.push("/login");
   };
   const tasks = [
-    { label: "Mensajes", count: 7, iconSrc: "/images/Dashboard_Home/mensajes.png", iconAlt: "Mensajes", href: "/chat" },
-    { label: "Envío", count: 7, iconSrc: "/images/Dashboard_Home/envio.png", iconAlt: "Envío", href: "/inventory" },
-    { label: "Visitas a la tienda", count: 7, iconSrc: "/images/Dashboard_Home/visitas.png", iconAlt: "Visitas", href: "/customer-categories" },
+    { label: "Mensajes", count: 7, iconSrc: "/images/Dashboard_Home/mensajes.svg", iconAlt: "Mensajes", href: "/chat" },
+    { label: "Envío", count: 7, iconSrc: "/images/Dashboard_Home/envio.svg", iconAlt: "Envío", href: "/inventory" },
+    { label: "Visitas a la tienda", count: 7, iconSrc: "/images/Dashboard_Home/visitas.svg", iconAlt: "Visitas", href: "/customer-categories" },
   ];
 
   const categories = [
     // Top row
-    { label: "Interesado", iconSrc: "/images/Dashboard_Home/CustomerCategories/interesado.png", innerW: 66, innerH: 44, textW: 66, textH: 18, gap: 2, labelFontSize: 12, labelLineHeight: 18 },
-    { label: "Visitas a la tienda", iconSrc: "/images/Dashboard_Home/visitas.png", innerW: 90, innerH: 45, textW: 90, textH: 15, gap: 6, labelFontSize: 10, labelLineHeight: 15 },
-    { label: "Envío", iconSrc: "/images/Dashboard_Home/envio.png", innerW: 38, innerH: 44, textW: 38, textH: 18, gap: 2, labelFontSize: 12, labelLineHeight: 18 },
+    { label: "Interesado", iconSrc: "/images/Dashboard_Home/CustomerCategories/interesado.svg", innerW: 66, innerH: 44, textW: 66, textH: 18, gap: 2, labelFontSize: 12, labelLineHeight: 18 },
+    { label: "Visitas a la tienda", iconSrc: "/images/Dashboard_Home/visitas.svg", innerW: 90, innerH: 45, textW: 90, textH: 15, gap: 6, labelFontSize: 10, labelLineHeight: 15 },
+    { label: "Envío", iconSrc: "/images/Dashboard_Home/envio.svg", innerW: 38, innerH: 44, textW: 38, textH: 18, gap: 2, labelFontSize: 12, labelLineHeight: 18 },
     // Bottom row
-    { label: "Solo Pide Info", iconSrc: "/images/Dashboard_Home/CustomerCategories/soloPriceinfo.png", innerW: 81, innerH: 44, textW: 81, textH: 18, gap: 1, labelFontSize: 12, labelLineHeight: 18 },
-    { label: "No Interesado", iconSrc: "/images/Dashboard_Home/CustomerCategories/noIntersado.png", innerW: 85, innerH: 48, textW: 85, textH: 18, gap: 3, labelFontSize: 12, labelLineHeight: 18 },
-    { label: "Closed", iconSrc: "/images/Dashboard_Home/CustomerCategories/closed.png", innerW: 38, innerH: 44, textW: 38, textH: 18, gap: 1, labelFontSize: 12, labelLineHeight: 18 },
+    { label: "Solo Pide Info", iconSrc: "/images/Dashboard_Home/CustomerCategories/soloPriceinfo.svg", innerW: 81, innerH: 44, textW: 81, textH: 18, gap: 1, labelFontSize: 12, labelLineHeight: 18 },
+    { label: "No Interesado", iconSrc: "/images/Dashboard_Home/CustomerCategories/noIntersado.svg", innerW: 85, innerH: 48, textW: 85, textH: 18, gap: 3, labelFontSize: 12, labelLineHeight: 18 },
+    { label: "Closed", iconSrc: "/images/Dashboard_Home/CustomerCategories/closed.svg", innerW: 38, innerH: 44, textW: 38, textH: 18, gap: 1, labelFontSize: 12, labelLineHeight: 18 },
   ];
 
   const messages = [
@@ -76,8 +77,26 @@ export default function DashboardHomePage() {
                 </Link>
                 <div className="w-[334px] flex flex-col gap-2">
                   {messages.map((m, i) => (
-                    <Link key={i} href="/chat" className="active:opacity-90">
-                      <MessageItem name={m.name} product={m.product} />
+                    <Link key={i} href="/chat" className="block">
+                      <motion.div
+                        whileHover={{ 
+                          scale: 1.02,
+                          y: -2,
+                          boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)"
+                        }}
+                        whileTap={{ 
+                          scale: 0.98,
+                          y: 0
+                        }}
+                        transition={{ 
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 17,
+                          duration: 0.15
+                        }}
+                      >
+                        <MessageItem name={m.name} product={m.product} />
+                      </motion.div>
                     </Link>
                   ))}
                 </div>
@@ -130,41 +149,81 @@ export default function DashboardHomePage() {
 
             {/* Inventory & Profile Links */}
             <div className="w-full max-w-[358px] flex flex-col gap-2">
-              <Link href="/inventory" className="w-full h-[61px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-3 py-2 flex items-center justify-between active:opacity-90" aria-label="Go to Inventory">
-                <div className="flex items-center gap-3">
-                  <div className="w-[40px] h-[40px] bg-[#F5F3F1] rounded-[4px] flex items-center justify-center">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20 7H4M20 12H4M20 17H4" stroke="#464646" strokeWidth="2" strokeLinecap="round" />
+              <Link href="/inventory" className="block w-full" aria-label="Go to Inventory">
+                <motion.div
+                  className="w-full h-[61px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-3 py-2 flex items-center justify-between"
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -2,
+                    backgroundColor: "#F5F3F1",
+                    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)"
+                  }}
+                  whileTap={{ 
+                    scale: 0.98,
+                    y: 0
+                  }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17,
+                    duration: 0.15
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-[40px] h-[40px] bg-[#F5F3F1] rounded-[4px] flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 7H4M20 12H4M20 17H4" stroke="#464646" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[15px] leading-[22px] font-medium text-black">Inventory</span>
+                      <span className="text-[12px] leading-[18px] text-[#464646]">Manage products</span>
+                    </div>
+                  </div>
+                  <div className="w-[15.5px] h-[15.5px] inline-flex items-center justify-center" aria-hidden>
+                    <svg width="15.5" height="15.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 6L16 12L10 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[15px] leading-[22px] font-medium text-black">Inventory</span>
-                    <span className="text-[12px] leading-[18px] text-[#464646]">Manage products</span>
-                  </div>
-                </div>
-                <div className="w-[15.5px] h-[15.5px] inline-flex items-center justify-center" aria-hidden>
-                  <svg width="15.5" height="15.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 6L16 12L10 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
+                </motion.div>
               </Link>
-              <Link href="/profile" className="w-full h-[61px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-3 py-2 flex items-center justify-between active:opacity-90" aria-label="Go to Profile">
-                <div className="flex items-center gap-3">
-                  <div className="w-[40px] h-[40px] bg-[#F5F3F1] rounded-[4px] flex items-center justify-center">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <Link href="/profile" className="block w-full" aria-label="Go to Profile">
+                <motion.div
+                  className="w-full h-[61px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-3 py-2 flex items-center justify-between"
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -2,
+                    backgroundColor: "#F5F3F1",
+                    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)"
+                  }}
+                  whileTap={{ 
+                    scale: 0.98,
+                    y: 0
+                  }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17,
+                    duration: 0.15
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-[40px] h-[40px] bg-[#F5F3F1] rounded-[4px] flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[15px] leading-[22px] font-medium text-black">Profile</span>
+                      <span className="text-[12px] leading-[18px] text-[#464646]">Account & Payments</span>
+                    </div>
+                  </div>
+                  <div className="w-[15.5px] h-[15.5px] inline-flex items-center justify-center" aria-hidden>
+                    <svg width="15.5" height="15.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 6L16 12L10 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-[15px] leading-[22px] font-medium text-black">Profile</span>
-                    <span className="text-[12px] leading-[18px] text-[#464646]">Account & Payments</span>
-                  </div>
-                </div>
-                <div className="w-[15.5px] h-[15.5px] inline-flex items-center justify-center" aria-hidden>
-                  <svg width="15.5" height="15.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 6L16 12L10 18" stroke="#464646" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
+                </motion.div>
               </Link>
             </div>
           </div>

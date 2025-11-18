@@ -56,7 +56,7 @@ export default function ResetPasswordPage() {
         {/* Card Frame 38: 364x380 with 24px vertical padding and 16px gap */}
         <AuthCard className="w-full max-w-[358px] min-h-[389px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] pt-6 pb-6 px-4 flex flex-col items-center gap-4">
           {/* Logo 214x56 */}
-          <img src="/images/Logo_bg_removed.png" alt="Dialoga" width={214} height={56} className="w-[214px] h-[56px] object-contain" />
+          <img src="/images/Logo_bg_removed.svg" alt="Dialoga" width={214} height={56} className="w-[214px] h-[56px] object-contain" />
 
           {/* Title */}
           <div className="w-full">
@@ -105,7 +105,7 @@ export default function ResetPasswordPage() {
               <path d="M15 18L9 12L15 6" stroke="#03121F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
-          <img src="/images/Logo_bg_removed.png" alt="Dialoga" width={232} height={65} className="w-[232px] h-[65px] object-contain" />
+          <img src="/images/Logo_bg_removed.svg" alt="Dialoga" width={232} height={65} className="w-[232px] h-[65px] object-contain" />
           <div className="w-[28px] h-[28px]" />
         </div>
         {/* Divider line */}
@@ -119,7 +119,7 @@ export default function ResetPasswordPage() {
             <AuthCard className="w-full max-w-[372px] h-[461.2857px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] pt-8 pb-8 px-4 flex flex-col items-center gap-4">
               {/* Content stack width 340 */}
               <div className="w-full max-w-[340px] flex flex-col items-center gap-4">
-                <img src="/images/Logo_bg_removed.png" alt="Dialoga" width={214} height={57} className="w-[214px] h-[57px] object-contain" />
+                <img src="/images/Logo_bg_removed.svg" alt="Dialoga" width={214} height={57} className="w-[214px] h-[57px] object-contain" />
                 <div className="w-[340px] h-[32px]">
                   <h1 className="w-[340px] h-[32px] text-[21px] leading-[32px] font-semibold text-black">Reset Password</h1>
                 </div>

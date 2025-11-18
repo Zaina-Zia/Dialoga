@@ -9,6 +9,7 @@ import { MessageBubble } from "../../../components/chat/MessageBubble";
 import { TypingIndicator } from "../../../components/chat/TypingIndicator";
 import { RoleGuard } from "../../../components/guards/RoleGuard";
 import { Plus, Search, Paperclip, Camera, Mic, Send } from "lucide-react";
+import { motion } from "framer-motion";
 
 const contacts = [
   { name: "Name of Customer", preview: "Abbreviated message here", time: "13:45" },
@@ -139,9 +140,17 @@ export default function ChatViewPage() {
 
         {/* Fixed Input Area */}
         <div className="flex-none w-full h-[40px] bg-[#464646] flex items-center px-4 gap-2">
-          <button type="button" onClick={handleAddImage} className="h-6 w-6 grid place-items-center flex-none" aria-label="Add">
+          <motion.button 
+            type="button" 
+            onClick={handleAddImage} 
+            className="h-6 w-6 grid place-items-center flex-none rounded" 
+            aria-label="Add"
+            whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+          >
               <Plus className="h-6 w-6 text-[#E3E3E3]" />
-            </button>
+            </motion.button>
           <input
             type="text"
             value={inputText}
@@ -150,18 +159,49 @@ export default function ChatViewPage() {
             placeholder="Type a message..."
             className="flex-1 min-w-0 h-[23px] bg-[#D9D9D9] rounded-[10px] px-3 text-[15px] leading-[22px] text-[#464646] outline-none placeholder-[#464646]/50"
           />
-          <button type="button" onClick={handleSend} disabled={!inputText.trim()} className="h-6 w-6 grid place-items-center flex-none disabled:opacity-50" aria-label="Send">
+          <motion.button 
+            type="button" 
+            onClick={handleSend} 
+            disabled={!inputText.trim()} 
+            className="h-6 w-6 grid place-items-center flex-none rounded disabled:opacity-50" 
+            aria-label="Send"
+            whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+          >
             <Send className="h-5 w-5 text-[#E3E3E3]" />
-          </button>
-          <button type="button" className="h-6 w-6 grid place-items-center flex-none" aria-label="Attach">
+          </motion.button>
+          <motion.button 
+            type="button" 
+            className="h-6 w-6 grid place-items-center flex-none rounded" 
+            aria-label="Attach"
+            whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+          >
               <Paperclip className="h-5 w-5 text-[#E3E3E3]" />
-            </button>
-          <button type="button" className="h-6 w-6 grid place-items-center flex-none" aria-label="Camera">
+            </motion.button>
+          <motion.button 
+            type="button" 
+            className="h-6 w-6 grid place-items-center flex-none rounded" 
+            aria-label="Camera"
+            whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+          >
               <Camera className="h-5 w-5 text-[#E3E3E3]" />
-            </button>
-          <button type="button" onClick={handleRecord} className="h-6 w-6 grid place-items-center flex-none" aria-label="Record">
+            </motion.button>
+          <motion.button 
+            type="button" 
+            onClick={handleRecord} 
+            className="h-6 w-6 grid place-items-center flex-none rounded" 
+            aria-label="Record"
+            whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+          >
               <Mic className="h-5 w-5 text-[#E3E3E3]" />
-            </button>
+            </motion.button>
         </div>
       </section>
 
@@ -220,7 +260,7 @@ export default function ChatViewPage() {
                         style={{ background: "rgba(9, 181, 88, 0.25)" }}
                       >
                         <img
-                          src="/images/Dashboard_Home/accountCircle.png"
+                          src="/images/Dashboard_Home/accountCircle.svg"
                           alt="avatar"
                           className="h-[41px] w-[41px] object-contain"
                         />
@@ -273,9 +313,17 @@ export default function ChatViewPage() {
               {/* COMPOSER - Fixed at bottom */}
               <div className="w-full flex-none border-t border-[#E4E1DD]">
                   <div className="w-full h-[56px] bg-[#464646] flex items-center gap-3 px-4">
-                    <button type="button" onClick={() => setAttachments((p) => [...p, "Imagen"])} className="h-6 w-6 grid place-items-center" aria-label="Add">
+                    <motion.button 
+                      type="button" 
+                      onClick={() => setAttachments((p) => [...p, "Imagen"])} 
+                      className="h-6 w-6 grid place-items-center rounded" 
+                      aria-label="Add"
+                      whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+                    >
                       <Plus className="h-6 w-6 text-[#E3E3E3]" />
-                    </button>
+                    </motion.button>
                   <input
                     type="text"
                     value={inputText}
@@ -284,18 +332,49 @@ export default function ChatViewPage() {
                     placeholder="Type a message..."
                     className="flex-1 h-[24px] bg-[#D9D9D9] rounded-[10px] px-3 text-[15px] leading-[22px] text-[#464646] outline-none placeholder-[#464646]/50"
                   />
-                  <button type="button" onClick={handleSend} disabled={!inputText.trim()} className="h-6 w-6 grid place-items-center disabled:opacity-50" aria-label="Send">
+                  <motion.button 
+                    type="button" 
+                    onClick={handleSend} 
+                    disabled={!inputText.trim()} 
+                    className="h-6 w-6 grid place-items-center rounded disabled:opacity-50" 
+                    aria-label="Send"
+                    whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+                  >
                     <Send className="h-5 w-5 text-[#E3E3E3]" />
-                  </button>
-                    <button type="button" className="h-6 w-6 grid place-items-center" aria-label="Attach">
+                  </motion.button>
+                    <motion.button 
+                      type="button" 
+                      className="h-6 w-6 grid place-items-center rounded" 
+                      aria-label="Attach"
+                      whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+                    >
                       <Paperclip className="h-5 w-5 text-[#E3E3E3]" />
-                    </button>
-                    <button type="button" className="h-6 w-6 grid place-items-center" aria-label="Camera">
+                    </motion.button>
+                    <motion.button 
+                      type="button" 
+                      className="h-6 w-6 grid place-items-center rounded" 
+                      aria-label="Camera"
+                      whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+                    >
                       <Camera className="h-5 w-5 text-[#E3E3E3]" />
-                    </button>
-                    <button type="button" onClick={() => setAttachments((p) => [...p, "Nota de voz"])} className="h-6 w-6 grid place-items-center" aria-label="Record">
+                    </motion.button>
+                    <motion.button 
+                      type="button" 
+                      onClick={() => setAttachments((p) => [...p, "Nota de voz"])} 
+                      className="h-6 w-6 grid place-items-center rounded" 
+                      aria-label="Record"
+                      whileHover={{ scale: 1.15, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17, duration: 0.15 }}
+                    >
                       <Mic className="h-5 w-5 text-[#E3E3E3]" />
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
               </div>

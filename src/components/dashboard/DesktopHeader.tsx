@@ -35,7 +35,7 @@ export default function DesktopHeader({ onNotify, onLogout, showAdminControl = f
             {/* Center: logo - using higher quality image */}
             <div className="h-[65px] w-[232px] grid place-items-center">
               <img
-                src="/images/Logo_bg_removed.png"
+                src="/images/Logo_bg_removed.svg"
                 alt="Dialoga"
                 className="h-[65px] w-[232px] object-contain"
                 style={{ imageRendering: "crisp-edges" }}
@@ -75,22 +75,54 @@ export default function DesktopHeader({ onNotify, onLogout, showAdminControl = f
               <motion.button
                 aria-label="Notifications"
                 onClick={onNotify}
-                className="grid place-items-center h-7 w-7"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.1 }}
+                className="grid place-items-center h-7 w-7 rounded-md transition-colors"
+                whileHover={{ 
+                  scale: 1.15,
+                  backgroundColor: "rgba(0, 0, 0, 0.05)"
+                }}
+                whileTap={{ 
+                  scale: 0.9,
+                  backgroundColor: "rgba(0, 0, 0, 0.1)"
+                }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                  duration: 0.15
+                }}
               >
-                <Bell className="h-7 w-7 text-[#464646]" />
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, -5, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Bell className="h-7 w-7 text-[#464646]" />
+                </motion.div>
               </motion.button>
               <motion.button
                 aria-label="Logout"
                 onClick={onLogout}
-                className="grid place-items-center h-7 w-7"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.1 }}
+                className="grid place-items-center h-7 w-7 rounded-md transition-colors"
+                whileHover={{ 
+                  scale: 1.15,
+                  backgroundColor: "rgba(0, 0, 0, 0.05)"
+                }}
+                whileTap={{ 
+                  scale: 0.9,
+                  backgroundColor: "rgba(0, 0, 0, 0.1)"
+                }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                  duration: 0.15
+                }}
               >
-                <LogOut className="h-7 w-7 text-[#464646]" />
+                <motion.div
+                  whileHover={{ rotate: [0, 10, -10, 5, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <LogOut className="h-7 w-7 text-[#464646]" />
+                </motion.div>
               </motion.button>
             </div>
           </div>

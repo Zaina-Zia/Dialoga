@@ -27,12 +27,12 @@ export default function OldClosedCustomersPage() {
   const toggle = (key) => setOpen((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const categories = [
-    { key: "interesado", title: "Interesado", imageSrc: "/images/Dashboard_Home/CustomerCategories/interesado.png" },
-    { key: "delivery", title: "Delivery", imageSrc: "/images/Dashboard_Home/envio.png" },
-    { key: "vaEnPersona", title: "Va En Persona", imageSrc: "/images/Dashboard_Home/visitas.png" },
-    { key: "soloPideInfo", title: "Solo Pide Info", imageSrc: "/images/Dashboard_Home/CustomerCategories/soloPriceinfo.png" },
-    { key: "noInteresado", title: "No Interesado", imageSrc: "/images/Dashboard_Home/CustomerCategories/noIntersado.png" },
-    { key: "closed", title: "Closed", imageSrc: "/images/Dashboard_Home/CustomerCategories/closed.png" },
+    { key: "interesado", title: "Interesado", imageSrc: "/images/Dashboard_Home/CustomerCategories/interesado.svg" },
+    { key: "delivery", title: "Delivery", imageSrc: "/images/Dashboard_Home/envio.svg" },
+    { key: "vaEnPersona", title: "Va En Persona", imageSrc: "/images/Dashboard_Home/visitas.svg" },
+    { key: "soloPideInfo", title: "Solo Pide Info", imageSrc: "/images/Dashboard_Home/CustomerCategories/soloPriceinfo.svg" },
+    { key: "noInteresado", title: "No Interesado", imageSrc: "/images/Dashboard_Home/CustomerCategories/noIntersado.svg" },
+    { key: "closed", title: "Closed", imageSrc: "/images/Dashboard_Home/CustomerCategories/closed.svg" },
   ];
 
   return (

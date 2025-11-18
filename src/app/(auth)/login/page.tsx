@@ -103,7 +103,7 @@ export default function LoginPage() {
         {/* Left column: green pane exactly 50% width with centered 451x451 box */}
         <div className="bg-[#09B558] h-full flex items-center justify-center">
           
-            <img src="/images/DesktopLogo.png" alt="Dialoga" width={451} height={451} className="max-w-[90%] max-h-[90%] object-contain" />
+            <img src="/images/DesktopLogo.svg" alt="Dialoga" width={451} height={451} className="max-w-[90%] max-h-[90%] object-contain" />
           
         </div>
 

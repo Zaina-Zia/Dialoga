@@ -7,7 +7,7 @@ type Props = {
   avatarSrc?: string;
 };
 
-export function MessageItem({ name, product, avatarSrc = "/images/Dashboard_Home/accountCircle.png" }: Props) {
+export function MessageItem({ name, product, avatarSrc = "/images/Dashboard_Home/accountCircle.svg" }: Props) {
   return (
     <div className="w-[334px] h-[61px] bg-[#FDFCFB] border border-[#464646]/25 rounded-[8px] shadow-[0_4px_4px_rgba(0,0,0,0.05)] px-1.5 py-2 flex items-center gap-4">
       {/* Avatar */}

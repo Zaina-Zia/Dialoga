@@ -23,52 +23,52 @@ export default function VerifyEmailPage() {
   };
 
   return (
-    <main className="min-h-dvh w-full grid place-items-center">
-      {/* Mobile artboard 390x812, space-between */}
-      <section className="lg:hidden w-full max-w-[390px] min-h-dvh flex flex-col items-center bg-[#F5F3F1] pt-8 px-4 pb-[107px] gap-8">
-        {/* Header 390x36 with 8/16 paddings */}
-        <header className="w-full h-[36px] px-2 sm:px-4 py-2 flex items-center">
-          <Link href="/login" aria-label="Back to Login" className="w-[20px] h-[20px] inline-flex items-center justify-center">
+    <main className="min-h-dvh w-full bg-[#F5F3F1]">
+      {/* Mobile-first layout - responsive from smallest screens */}
+      <section className="w-full min-h-dvh flex flex-col items-center bg-[#F5F3F1] pt-4 sm:pt-8 px-3 sm:px-4 pb-8 sm:pb-[107px] gap-4 sm:gap-8 lg:hidden">
+        {/* Header - responsive padding */}
+        <header className="w-full max-w-[390px] h-auto min-h-[36px] px-2 sm:px-4 py-2 flex items-center">
+          <Link href="/login" aria-label="Back to Login" className="w-[20px] h-[20px] inline-flex items-center justify-center flex-shrink-0">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="#03121F" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"  transform="translate(-6, 0)"/>
+              <path d="M15 18L9 12L15 6" stroke="#03121F" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
         </header>
 
-        {/* Dialoga box wrapper with side paddings 12px, sits 32px under header */}
-        <div className="w-full min-h-[426px] px-2 sm:px-3 flex flex-col items-center gap-4">
-          {/* Inner card 366x358 with 24/24 padding and 16px gap, 8px radius, 1px border */}
-          <AuthCard className="w-full max-w-[366px] min-h-[358px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] pt-6 pb-6 px-4 flex flex-col items-center gap-4">
-            {/* Logo */}
+        {/* Main content card - responsive width */}
+        <div className="w-full max-w-[390px] flex flex-col items-center gap-4 sm:gap-6">
+          <AuthCard className="w-full max-w-[366px] min-h-[358px] bg-[#FDFCFB] border border-[#E4E1DD] rounded-[8px] pt-6 pb-6 px-3 sm:px-4 flex flex-col items-center gap-4 sm:gap-6">
+            {/* Logo - responsive sizing */}
             <img
               src="/images/logo.jpg"
               alt="Dialoga"
               width={214}
               height={56}
-              className="w-[214px] h-[56px] object-contain"
+              className="w-full max-w-[214px] h-auto object-contain"
             />
 
-            {/* Title frame 340x32 */}
-            <div className="w-full max-w-[340px] -mt-1">
-              <h1 className="w-full text-[21px] leading-[26px] font-semibold text-black text-center sm:text-left">Verify Your Email</h1>
+            {/* Title */}
+            <div className="w-full -mt-1">
+              <h1 className="w-full text-[21px] leading-[26px] font-semibold text-black text-center">Verify Your Email</h1>
             </div>
 
-            {/* Code area wrapper 340x197 with 32 gap */}
-            <form noValidate onSubmit={handleSubmit} className="w-full max-w-[340px] flex flex-col gap-8">
-              {/* Instruction + boxes group 340x120 with 8 gap */}
-              <div className="w-full flex flex-col gap-2">
+            {/* Form - responsive width */}
+            <form noValidate onSubmit={handleSubmit} className="w-full flex flex-col gap-6 sm:gap-8">
+              <div className="w-full flex flex-col gap-2 sm:gap-3">
                 <p className="w-full text-[18px] leading-[22px] font-medium text-black">
                   Enter the 6-digit verification code
                 </p>
-                {/* Boxes frame 340x50 with 8 gap */}
-                <OtpInput value={code} onChange={setCode} />
-                {/* Resend link 340x23, right aligned */}
+                {/* OTP Input - now responsive */}
+                <div className="w-full flex justify-center">
+                  <OtpInput value={code} onChange={setCode} />
+                </div>
+                {/* Resend link */}
                 <div className="w-full flex items-center justify-end">
-                  <Link href="#" className="text-[15px] leading-[15px] underline text-black">Resend SMS code</Link>
+                  <Link href="#" className="text-[15px] leading-[22px] underline text-black">Resend SMS code</Link>
                 </div>
               </div>
 
-              {/* Buttons frame 340x81 with 4 gap (only one button visible here) */}
+              {/* Continue button */}
               <div className="w-full flex flex-col gap-1">
                 <Button
                   type="submit"
@@ -81,44 +81,54 @@ export default function VerifyEmailPage() {
             </form>
           </AuthCard>
         </div>
-
-        {/* Bottom spacer below content */}
-        <div className="h-[216px] w-full" />
       </section>
 
-      {/* Desktop layout (lg and up): header + divider + centered card per Figma */}
+      {/* Desktop layout (lg and up): header + divider + centered card */}
       <section className="hidden lg:flex w-full min-h-dvh flex-col items-center bg-[#F5F3F1]">
-        {/* Header 97px with back chevron left and centered logo */}
+        {/* Header */}
         <div className="w-full h-[97px] px-4 flex items-center justify-between">
           <Link href="/login" aria-label="Back" className="w-[20px] h-[20px] inline-flex items-center justify-center">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 18L9 12L15 6" stroke="#03121F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
-          <img src="/images/Logo_bg_removed.png" alt="Dialoga" width={232} height={65} className="w-[232px] h-[65px] object-contain" />
+          <img 
+            src="/images/Logo_bg_removed.svg" 
+            alt="Dialoga" 
+            width={232} 
+            height={65} 
+            className="w-[232px] h-[65px] object-contain"
+            style={{ imageRendering: "crisp-edges" }}
+          />
           <div className="w-[28px] h-[28px]" />
         </div>
         {/* Divider line */}
         <div className="w-full border-t border-black" />
 
-        {/* Centered card region (Figma gap ~234px; clamp for responsiveness) */}
+        {/* Centered card region */}
         <div className="w-full flex items-start justify-center mt-[clamp(32px,12vh,234px)] pb-8">
-          {/* Outer card 436x400 with 32 padding */}
-          <AuthCard className="w-full max-w-[366px] h-[358px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] py-8 px-6 flex flex-col items-center gap-4">
-            {/* Inner card 372x336 with 32/16 paddings */}
-            <AuthCard className="w-full max-w-[366px] h-[358px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] pt-8 pb-8 px-4 flex flex-col items-center gap-4">
-              {/* Content width 340 */}
-              <div className="w-[340px] flex flex-col items-center gap-4">
-                <img src="/images/logo.jpg" alt="Dialoga" width={214} height={57} className="w-[214px] h-[57px] object-contain" />
+          <AuthCard className="w-full max-w-[366px] min-h-[358px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] py-8 px-6 flex flex-col items-center gap-4">
+            <AuthCard className="w-full max-w-[366px] min-h-[358px] bg-[#FBF9F7] shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-[8px] pt-8 pb-8 px-4 flex flex-col items-center gap-4">
+              <div className="w-full max-w-[340px] flex flex-col items-center gap-4">
+                <img 
+                  src="/images/logo.jpg" 
+                  alt="Dialoga" 
+                  width={214} 
+                  height={57} 
+                  className="w-[214px] h-[57px] object-contain"
+                  style={{ imageRendering: "crisp-edges" }}
+                />
                 <div className="w-full max-w-[340px]">
-                  <h1 className="w-full text-[21px] leading-[21px] font-semibold text-black text-center sm:text-left">Verify Your Email</h1>
+                  <h1 className="w-full text-[21px] leading-[27px] font-semibold text-black text-center">Verify Your Email</h1>
                 </div>
-                {/* Instructions + OTP + CTA */}
-                <form noValidate onSubmit={handleSubmit} className="w-[340px] flex flex-col gap-6">
-                  <div className="w-[340px] flex flex-col gap-4">
-                    <p className="w-[304px] h-[27px] text-[18px] leading-[27px] font-medium text-black">Enter the 6-digit verification code</p>
-                    <div className="w-[340px] h-[50px] flex items-center justify-center">
+                <form noValidate onSubmit={handleSubmit} className="w-full max-w-[340px] flex flex-col gap-6">
+                  <div className="w-full flex flex-col gap-4">
+                    <p className="w-full text-[18px] leading-[27px] font-medium text-black">Enter the 6-digit verification code</p>
+                    <div className="w-full flex items-center justify-center">
                       <OtpInput value={code} onChange={setCode} />
+                    </div>
+                    <div className="w-full flex items-center justify-end">
+                      <Link href="#" className="text-[15px] leading-[22px] underline text-black">Resend SMS code</Link>
                     </div>
                   </div>
                   <Button

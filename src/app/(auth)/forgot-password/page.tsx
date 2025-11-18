@@ -76,7 +76,7 @@ export default function ForgotPasswordPage() {
               <path d="M15 18L9 12L15 6" stroke="#03121F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
-          <img src="/images/Logo_bg_removed.png" alt="Dialoga" width={232} height={65} className="w-[232px] h-[65px] object-contain" />
+          <img src="/images/Logo_bg_removed.svg" alt="Dialoga" width={232} height={65} className="w-[232px] h-[65px] object-contain" />
           <div className="w-[28px] h-[28px]" />
         </div>
         {/* Divider line */}
