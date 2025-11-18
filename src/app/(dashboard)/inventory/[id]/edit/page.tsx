@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+import React, { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { DashboardHeader } from "../../../../../components/dashboard/DashboardHeader";
 import DesktopHeader from "../../../../../components/dashboard/DesktopHeader";
 import DesktopFooter from "../../../../../components/dashboard/DesktopFooter";
@@ -8,60 +8,19 @@ import Footer from "../../../../../components/layout/Footer";
 import { ProductForm } from "../../../../../components/inventory/ProductForm";
 import { NotificationOverlay } from "../../../../../components/notifications/NotificationOverlay";
 import { LogoutOverlay } from "../../../../../components/overlays/LogoutOverlay";
-import { Product } from "../../../../../types";
-
-const getProducts = (): Product[] => {
-  if (typeof window === "undefined") return [];
-  const stored = localStorage.getItem("products");
-  return stored ? JSON.parse(stored) : [];
-};
-
-const saveProducts = (products: Product[]) => {
-  if (typeof window === "undefined") return;
-  localStorage.setItem("products", JSON.stringify(products));
-};
+import { useInventoryItem } from "../../../../../hooks";
 
 export default function EditProductPage() {
-  const router = useRouter();
   const params = useParams();
+  const router = useRouter();
   const productId = params.id as string;
-  const [product, setProduct] = useState<Product | null>(null);
+  const { product, isSubmitting, updateProduct, deleteProduct, cancelEdit } = useInventoryItem(productId);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    const products = getProducts();
-    const found = products.find((p) => p.id === productId);
-    if (found) {
-      setProduct(found);
-    } else {
-      router.push("/inventory");
-    }
-  }, [productId, router]);
-
-  const handleSubmit = (productData: Omit<Product, "id">) => {
-    setIsSubmitting(true);
-    // Simulate API call delay
-    setTimeout(() => {
-      const products = getProducts();
-      const index = products.findIndex((p) => p.id === productId);
-      if (index !== -1) {
-        products[index] = {
-          ...products[index],
-          ...productData,
-          updatedAt: new Date().toISOString(),
-        };
-        saveProducts(products);
-        setIsSubmitting(false);
-        router.push("/inventory");
-      }
-    }, 500);
-  };
-
-  const handleCancel = () => {
-    router.push("/inventory");
-  };
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const handleSubmit = updateProduct;
+  const handleCancel = cancelEdit;
+  const handleConfirmDelete = deleteProduct;
 
   if (!product) {
     return (
@@ -80,7 +39,16 @@ export default function EditProductPage() {
         </div>
 
         <div className="w-full flex flex-col gap-4">
-          <h1 className="text-[21px] leading-[32px] font-semibold text-black">Edit Product</h1>
+          <div className="w-full flex items-center justify-between">
+            <h1 className="text-[21px] leading-[32px] font-semibold text-black">Edit Product</h1>
+            <button
+              type="button"
+              onClick={() => setShowDeleteConfirm(true)}
+              className="px-3 py-1.5 rounded-[6px] bg-[#D11A2A] text-white text-[14px] leading-[20px] font-medium"
+            >
+              Delete
+            </button>
+          </div>
           <div className="w-full rounded-[8px] border border-[#E4E1DD] bg-[#FDFCFB] p-3">
             <ProductForm product={product} onSubmit={handleSubmit} onCancel={handleCancel} isSubmitting={isSubmitting} />
           </div>
@@ -104,7 +72,16 @@ export default function EditProductPage() {
 
           <div className="w-full flex justify-center">
             <div className="w-full max-w-[680px] flex flex-col gap-6">
-              <h1 className="text-[21px] leading-[32px] font-semibold text-black">Edit Product</h1>
+              <div className="w-full flex items-center justify-between">
+                <h1 className="text-[21px] leading-[32px] font-semibold text-black">Edit Product</h1>
+                <button
+                  type="button"
+                  onClick={() => setShowDeleteConfirm(true)}
+                  className="px-3 py-1.5 rounded-[6px] bg-[#D11A2A] text-white text-[14px] leading-[20px] font-medium"
+                >
+                  Delete
+                </button>
+              </div>
               <div className="w-full rounded-[8px] border border-[#E4E1DD] bg-[#FDFCFB] p-6">
                 <ProductForm product={product} onSubmit={handleSubmit} onCancel={handleCancel} isSubmitting={isSubmitting} />
               </div>
@@ -117,6 +94,32 @@ export default function EditProductPage() {
           <LogoutOverlay open={showLogout} onClose={() => setShowLogout(false)} onConfirm={() => router.push("/login")} />
         </div>
       </section>
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/40 px-4">
+          <div className="w-full max-w-[360px] rounded-[10px] bg-[#FDFCFB] border border-[#E4E1DD] p-4 flex flex-col gap-3">
+            <h2 className="text-[18px] leading-[26px] font-semibold text-black">Delete product?</h2>
+            <p className="text-[14px] leading-[20px] text-[#464646]">
+              Are you sure you want to delete this product? This action cannot be undone.
+            </p>
+            <div className="mt-2 flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setShowDeleteConfirm(false)}
+                className="px-3 py-1.5 rounded-[6px] border border-[#E4E1DD] bg-white text-[14px] leading-[20px] text-[#464646]"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmDelete}
+                className="px-3 py-1.5 rounded-[6px] bg-[#D11A2A] text-white text-[14px] leading-[20px] font-medium"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

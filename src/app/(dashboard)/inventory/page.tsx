@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { DashboardHeader } from "../../../components/dashboard/DashboardHeader";
@@ -11,30 +11,14 @@ import { Button } from "../../../components/ui/Button";
 import { NotificationOverlay } from "../../../components/notifications/NotificationOverlay";
 import { LogoutOverlay } from "../../../components/overlays/LogoutOverlay";
 import { RoleGuard } from "../../../components/guards/RoleGuard";
-import { Product } from "../../../types";
+import { useInventoryList } from "../../../hooks";
 import { Plus } from "lucide-react";
-
-// Mock data storage (in real app, this would be API calls)
-const getProducts = (): Product[] => {
-  if (typeof window === "undefined") return [];
-  const stored = localStorage.getItem("products");
-  return stored ? JSON.parse(stored) : [];
-};
-
-const saveProducts = (products: Product[]) => {
-  if (typeof window === "undefined") return;
-  localStorage.setItem("products", JSON.stringify(products));
-};
 
 export default function InventoryPage() {
   const router = useRouter();
-  const [products, setProducts] = useState<Product[]>([]);
+  const { products } = useInventoryList();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-
-  useEffect(() => {
-    setProducts(getProducts());
-  }, []);
 
   return (
     <RoleGuard>
