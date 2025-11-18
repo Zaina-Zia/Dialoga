@@ -33,7 +33,7 @@ const CustomerCategoriesPage: React.FC = () => {
 
   return (
     <RoleGuard>
-      <div className="min-h-screen w-full bg-[#F5F3F1]">
+    <div className="min-h-screen w-full bg-[#F5F3F1]">
       {/* Container wrapper */}
       <div className="mx-auto flex min-h-screen w-full max-w-[390px] flex-col gap-8 px-4 sm:px-5 pt-8 pb-8 lg:max-w-[1512px] lg:gap-8 lg:pt-10 lg:pb-10 lg:px-[60px] lg:bg-[#F5F3F1]">
         {/* Header section */}

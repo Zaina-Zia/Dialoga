@@ -8,17 +8,15 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
     <header className="w-full flex flex-col items-center">
       {/* Outer container */}
       <div className="w-full max-w-[390px] h-auto flex flex-col">
-        {/* Inner frame with less top padding */}
-        <div className="w-full h-[81px] px-4 pt-1 pb-2 flex items-center justify-between gap-[46px]">
+        {/* Inner frame with centered logo; back button positioned independently */}
+        <div className="relative w-full h-[81px] px-4 pt-1 pb-2 flex items-center justify-center">
           {/* Back button */}
-          {hideBack ? (
-            <div className="w-[20px] h-[20px]" />
-          ) : (
+          {!hideBack && (
             <motion.button
               type="button"
               aria-label="Back"
               onClick={() => router.back()}
-              className="w-[20px] h-[20px] inline-flex items-center justify-center"
+              className="w-[20px] h-[20px] inline-flex items-center justify-center absolute left-4"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.1 }}
@@ -48,7 +46,6 @@ export function DashboardHeader({ hideBack = false }: { hideBack?: boolean }) {
             className="w-[232px] h-[65px] object-contain"
             style={{ imageRendering: "crisp-edges" }}
           />
-          <div className="w-[20px] h-[20px]" />
         </div>
       </div>
 
