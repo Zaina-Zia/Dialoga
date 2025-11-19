@@ -1,320 +1,221 @@
-# Dialoga 
+# Dialoga
 
-## 🚀 Tech Stack
+Dialoga is a responsive web application for managing customer conversations, inventory, and company administration. It is designed to work smoothly on both desktop and mobile, closely matching the provided Figma layouts.
 
-- **Framework:** [Next.js 16](https://nextjs.org/) with App Router
-- **Language:** TypeScript (with some `.jsx` files)
+## Live Demo
+
+- Vercel: https://dialoga-xi.vercel.app/login
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript (with a few `.jsx` components)
 - **UI Library:** React 19
 - **Styling:** Tailwind CSS 4
-- **Animations:** Framer Motion 12
-- **Icons:** Lucide React
 - **State Management:** Zustand
-- **Build Tool:** Next.js Turbopack
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
 
-## 📋 Prerequisites
+---
 
-- Node.js 18+ 
-- npm, yarn, pnpm, or bun
+## Prerequisites
 
-## Live Preview Link
-vercel : https://dialoga-xi.vercel.app/login
+To run this project locally, you will need:
 
-## 🛠️ Installation
+- **A computer with**:
+  - Windows, macOS, or Linux
+  - A modern web browser (Chrome, Edge, Firefox, or Safari)
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd dialoga
-```
+- **Visual Studio Code (VS Code)**  
+  This is the recommended editor to open and run the project.
 
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
+  **How to install VS Code:**
+  1. Go to: https://code.visualstudio.com
+  2. Download the installer for your operating system.
+  3. Run the installer and follow the steps (you can keep the default options).
 
-3. Run the development server:
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- **Node.js (version 18 or higher)**  
+  Node.js is required to run the development server and install dependencies.
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+  **How to install Node.js:**
+  1. Go to the official website: https://nodejs.org
+  2. Download the **LTS** version for your operating system.
+  3. Run the installer and follow the steps (you can keep the default options).
+  4. After installation, open a terminal / command prompt and run:
+     ```bash
+     node -v
+     ```
+     You should see a version number like `v18.x.x` or higher.
 
-## 🔐 Authentication & User Roles
+- **A package manager** (one of the following):
+  - **npm** – comes automatically with Node.js (recommended)
+  - **Yarn** – optional, install with:
+    ```bash
+    npm install -g yarn
+    ```
+  - **pnpm** – optional, install with:
+    ```bash
+    npm install -g pnpm
+    ```
 
-### Super Admin Access
+- **Git (to download the source code)**  
+  If you don’t already have Git installed:
 
-**To access the Super Admin Panel:**
-- **Email:** `superadmin@example.com` (or `admin@example.com` for legacy support)
-- **Password:** Any non-empty password
+  1. Go to: https://git-scm.com/downloads  
+  2. Download the installer for your operating system.  
+  3. Run the installer and keep the default options.  
+  4. To verify, open a terminal / command prompt and run:
+     ```bash
+     git --version
+     ```
 
-When you log in with `superadmin@example.com`, you'll be redirected to the Super Admin Panel (`/admin-panel-page`). **Super Admin has access ONLY to the management section** - they cannot access chats, inventory, profile, or customer categories.
+No external database or backend service is required. All data is stored in the browser using `localStorage`.
 
-### Company User Access
+---
 
-**To access the Company Dashboard:**
-- **Email:** `company@example.com` (or any other email except superadmin/admin)
-- **Password:** Any non-empty password
+## Getting Started (Run Locally)
 
-Company users have full access to:
-- Chat/Messages
-- Inventory management
-- Profile & Payments
-- Customer Categories
-- Dashboard features
+Follow these steps to run the app on your machine:
 
-**Note:** Super Admin is completely separated from Company user features. If a Super Admin tries to access regular user pages, they will be automatically redirected to the admin panel.
+1. **Clone the repository (once)**
 
-### Authentication Pages
+   In any terminal (Command Prompt / PowerShell / macOS Terminal), run:
 
-- **Login** (`/login`) - Email/password authentication
-- **Register** (`/register`) - User registration form
-- **Forgot Password** (`/forgot-password`) - Password recovery
-- **Reset Password** (`/reset-password`) - Set new password
-- **Verify Email** (`/verify-email`) - OTP verification (6-digit code)
+   ```bash
+   git clone https://github.com/Zaina-Zia/Dialoga.git
+   cd dialoga
+   ```
 
-## 🗺️ Navigation Guide
+2. **Open the project in VS Code**
 
-### Main Dashboard Routes
+   - Open **Visual Studio Code**.
+   - Click **File → Open Folder…**.
+   - Select the `dialoga` folder you just cloned.
 
-#### Regular User Dashboard (`/dashboard`)
-- **Your Tasks Section:**
-  - **Mensajes** → `/chat` - View and manage conversations
-  - **Envío** → `/inventory` - Manage product inventory
-  - **Visitas a la tienda** → `/customer-categories` - View customer categories
+3. **Open the integrated terminal in VS Code**
 
-- **Mensajes Section** → `/chat` - Quick access to chat page
+   - In VS Code, go to **View → Terminal** (or press **Ctrl + `**).
+   - Make sure the terminal path is inside the `dialoga` folder. If not, run:
+     ```bash
+     cd dialoga
+     ```
 
-- **Customer Categories Section** → `/customer-categories` - View all customer categories
+4. **Install dependencies**
 
-- **Inventory Link** → `/inventory` - Product management
+   Using **npm** (recommended):
 
-- **Profile Link** → `/profile` - User profile and payment methods
+   ```bash
+   npm install
+   ```
 
-#### Admin Panel Dashboard (`/admin-panel-page`)
-Accessible only when logged in as `admin@example.com`
+   Or, if you prefer:
 
-- **Your Tasks Section:**
-  - **Mensajes** → `/chat` - View conversations
-  - **Envío** → `/inventory` - Manage inventory
-  - **Visitas a la tienda** → `/customer-categories` - Customer categories
-
-- **Mensajes Section** → `/chat` - Chat interface
-
-- **Customer Categories Section** → `/customer-categories` - Customer management
-
-- **Super-Admin Panel** → `/admin-panel-dialoga` - Full admin controls
-
-### Feature Pages
-
-#### Chat (`/chat`)
-- Real-time chat interface with message bubbles
-- Typing indicators
-- Message history with timestamps
-- Image/media sending support
-- Search functionality
-- Mobile and desktop responsive layouts
-
-#### Inventory (`/inventory`)
-- Product list view (grid layout)
-- **Create Product** (`/inventory/create`) - Add new products
-- **Edit Product** (`/inventory/[id]/edit`) - Modify existing products
-- Image upload (max 3 images per product)
-- Image reordering
-- Product details: Name, Description, Price, Images, Category
-
-#### Profile (`/profile`)
-- **Profile Information:**
-  - Edit user name, email, phone
-  - Save profile changes
-
-- **Payment Methods:**
-  - View saved payment methods
-  - Add new payment method
-  - Edit existing payment method
-  - Delete payment method
-  - Card details: Number, Expiry, CVV, Name, Billing Address
-
-#### Customer Categories (`/customer-categories`)
-- View all customer categories
-- Category cards with icons
-- Accordion view for category details
-- Categories: Interesado, Visitas a la tienda, Envío, Solo Pide Info, No Interesado, Closed
-
-#### Old/Closed Customers (`/old-closed-customers`)
-- View closed customer records
-- Historical customer data
-
-### Admin Panel Routes
-
-#### Super-Admin Panel (`/admin-panel-dialoga`)
-Accessible from Admin Panel Dashboard
-
-- **Companies Management:**
-  - View all companies
-  - Create new company
-  - Edit existing company
-  - Delete company
-  - Toggle company status (Active/Paused)
-  - Company fields: Name, User Email, Phone, API Token, Status
-
-- **Messaging Providers** (`/admin-panel-dialoga/messaging-providers`)
-  - Configure messaging service providers
-  - Add/Edit/Delete providers
-  - Provider fields: Name, API Key, Endpoint URL, Status
-
-- **AI Providers** (`/admin-panel-dialoga/ai-providers`)
-  - Configure AI service providers
-  - Add/Edit/Delete providers
-  - Provider fields: Name, API Key, Endpoint URL, Status
-
-## ✨ Key Features
-
-### ✅ Implemented Features
-
-1. **Authentication System**
-   - Login, Register, Forgot/Reset Password
-   - Email verification with OTP
-   - Role-based routing (Admin vs. Regular User)
-
-2. **Dashboard**
-   - Mobile-first responsive design
-   - Task statistics cards
-   - Quick access to key features
-   - Notification and logout overlays
-
-3. **Chat Interface**
-   - Message bubbles with animations
-   - Typing indicators
-   - Message history persistence (localStorage)
-   - Simulated real-time messaging
-   - Image/media attachment support
-   - Search functionality
-
-4. **Inventory Management**
-   - Full CRUD operations (Create, Read, Update, Delete)
-   - Product list with grid view
-   - Image upload (max 3 per product)
-   - Image reordering
-   - Form validation
-   - Loading states
-
-5. **Profile & Payments**
-   - Profile information editing
-   - Payment method management
-   - Add/Edit/Delete payment methods
-   - Form validation
-   - Success toast notifications
-
-6. **Customer Categories**
-   - Category visualization
-   - Accordion view
-   - Category filtering
-
-7. **Admin Panel**
-   - Company management (CRUD)
-   - Status toggling (Active/Paused)
-   - Messaging Providers configuration
-   - AI Providers configuration
-   - Admin-only access control
-
-8. **Animations**
-   - Framer Motion integration
-   - Button press feedback
-   - Overlay transitions (fade/slide)
-   - Message bubble animations
-   - Staggered list animations
-   - Toast notifications
-
-9. **Responsive Design**
-   - Mobile-first approach
-   - Breakpoint: `lg` (1024px)
-   - Mobile artboard: 390px width
-   - Desktop max-width: 1512px
-
-10. **Data Persistence**
-    - localStorage for client-side data
-    - Chat messages
-    - Products/Inventory
-    - Payment methods
-    - User profile
-    - Admin companies
-    - Provider configurations
-
-## 📁 Project Structure
-
-```
-src/
-├── app/
-│   ├── (auth)/              # Authentication pages
-│   │   ├── login/
-│   │   ├── register/
-│   │   ├── forgot-password/
-│   │   ├── reset-password/
-│   │   └── verify-email/
-│   ├── (dashboard)/         # Protected dashboard routes
-│   │   ├── chat/
-│   │   ├── inventory/
-│   │   │   ├── create/
-│   │   │   └── [id]/edit/
-│   │   ├── profile/
-│   │   ├── customer-categories/
-│   │   ├── admin-panel-page/
-│   │   └── admin-panel-dialoga/
-│   │       ├── messaging-providers/
-│   │       └── ai-providers/
-│   ├── dashboard/            # Main dashboard
-│   └── page.tsx              # Root redirect to /login
-├── components/
-│   ├── admin/                # Admin panel components
-│   ├── auth/                 # Authentication components
-│   ├── chat/                 # Chat UI components
-│   ├── dashboard/            # Dashboard components
-│   ├── inventory/            # Inventory components
-│   ├── payments/             # Payment components
-│   ├── notifications/        # Notification overlay
-│   ├── overlays/             # Modal overlays
-│   └── ui/                   # Reusable UI components
-├── mocks/                    # JSON fixture files
-│   ├── companies.json
-│   ├── products.json
-│   ├── conversations.json
-│   └── users.json
-└── constants/                # Constants and mock data
-```
-
-
-## 📝 Notes
-
-- **Data Persistence:** All data is stored in `localStorage` (client-side only). No backend API is currently integrated.
-- **Simulated Backend:** Form submissions use `setTimeout` to simulate API delays and show loading states.
-- **TypeScript:** Most files use TypeScript, but some components still use `.jsx` for compatibility.
-- **Responsive Design:** The application is designed mobile-first with a breakpoint at 1024px (`lg`).
-
-## 🔧 Development
-
-### Adding New Features
-
-1. Create components in `src/components/[feature-name]/`
-2. Add routes in `src/app/(dashboard)/[feature-name]/`
-3. Use `localStorage` for data persistence (client-side)
-4. Add animations with Framer Motion
-5. Follow the existing responsive design patterns
-
-### Code Style
-
-- Use TypeScript where possible
-- Follow Next.js App Router conventions
-- Use Tailwind CSS for styling
-- Implement mobile-first responsive design
-- Add loading states for async operations
-- Use toast notifications for user feedback
+   ```bash
+   # yarn
+   yarn install
 
+   # pnpm
+   pnpm install
+   ```
 
+5. **Start the development server**
+
+   In the VS Code terminal, run:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
+
+6. **Open the application in your browser**
+
+   Once the server is running, open:
+
+   - http://localhost:3000
+
+   The app will start on the login page.
+
+---
+
+## Test Accounts & Access
+
+The app uses a simple, demo-style authentication system with two main roles.
+
+### Super Admin
+
+- **Email:** `superadmin@example.com`  / `admin@example.com` 
+- **Password:** Any **non-empty** string (e.g. `123456`)
+
+**What this user sees:**
+
+- Super admin panel and management screens
+- Access separated from regular company user features
+
+### Company User
+
+- **Email:** `company@example.com`  
+  (or any email address other than `superadmin@example.com`)
+- **Password:** Any **non-empty** string
+
+**What this user sees:**
+
+- Main dashboard
+- Chat / Messages
+- Inventory
+- Customer categories (old/closed customers in closed)
+- Profile & payments
+
+
+
+---
+
+## Main Features (Overview)
+
+- **Responsive Dashboard**
+  - Mobile-first design
+  - Optimized for 390px width on mobile and up to 1512px on desktop
+
+- **Chat / Messages**
+  - Chat-like interface with message bubbles
+  - Messages stored locally in the browser
+
+- **Inventory Management**
+  - Create, edit, and delete products
+  - Support for up to 3 images per product
+  - Data persisted via `localStorage`
+
+- **Customer Categories**
+  - Categories such as: Interesado, Visitas a la tienda, Envío, Solo Pide Info, No Interesado, Closed
+  - Accordion-style layout for viewing category details
+  - Separate “Old/Closed Customers” view
+
+- **Profile & Payments**
+  - Update basic profile information
+  - Manage payment methods (add / edit / delete)
+
+- **Admin Panel**
+  - Manage companies (create, edit, delete, toggle status)
+  - Manage messaging and AI provider configurations (mock data)
+
+---
+
+## Technical Notes
+
+- **Data Storage:**  
+  - All data (chat, inventory, customers, companies, providers, etc.) is stored in **`localStorage` only**.  
+  - There is **no external database or backend API**; all behavior is simulated on the client side.
+
+- **Routing:**  
+  - Built with **Next.js App Router** under `src/app`.
+  - Separate groups for authentication and dashboard routes.
+
+- **Styling & Layout:**  
+  - Tailwind CSS 4 for layout and spacing.
+  - Layouts closely follow the provided Figma designs for both desktop and mobile.
+
+---

@@ -48,7 +48,6 @@ export default function OldClosedCustomersPage() {
           <DesktopHeader
             onNotify={() => setShowNotifications(true)}
             onLogout={() => setShowLogout(true)}
-            showAdminControl
           />
         </div>
 
